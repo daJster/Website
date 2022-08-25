@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="clock.css">
+    <link rel="stylesheet" href="../../loader.css">
+    <link rel="stylesheet" href="../../default/default.css">
+    <link rel="icon" href="../../images/logos/clock-icon.png">
+    <title>Clock</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="nav-wrapper">
+            <div class="left-side">
+                <div class="nav-link-wrapper active-nav-link">
+                    <a href="../../index.html">Home</a>
+                </div>
+
+                <div class="nav-link-wrapper">
+                    <a href="../../about.html">About</a>
+                </div>
+            </div>
+            
+            <div class="bottom-side">
+                <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+                    <span class="sr-only"><img loading="lazy" src="../../images/arrow-down.png" style="top: -5px; height: 30px; aspect-ratio: 1; position: relative;"></span>
+                </button>
+                
+                <nav>
+                    <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+                        <li class="active">   
+                            <a href="../../lists/list-education.html">
+                                <span aria-hidden="true"></span>Education
+                            </a>
+                        <li>      
+                            <a href="../../lists/list-gadgets.html">
+                                <span aria-hidden="true"></span>Gadgets
+                            </a>
+                        <li>
+                            <a href="../../lists/list-games.html">
+                                <span aria-hidden="true"></span>Games
+                            </a>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="right-side">
+                <div class="brand">
+                    <a href="https://www.linkedin.com/in/jad-elkarchi-1894181bb/">Elkarchi Jad</a>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+
+    <div class="clocks">
+
+        <div class="clock">
+            
+            <div class="hand hour" hourPAR am="true" ></div>
+            <div class="hand minute" minutePAR></div>
+            <div class="hand second" secondPAR></div>
+            <div class="number number1">1</div>
+            <div class="number number2">2</div>
+            <div class="number number3">3</div>
+            <div class="number number4">4</div>
+            <div class="number number5">5</div>
+            <div class="number number6">6</div>
+            <div class="number number7">7</div>
+            <div class="number number8">8</div>
+            <div class="number number9">9</div>
+            <div class="number number10">10</div>
+            <div class="number number11">11</div>
+            <div class="number number12">12</div>
+        </div>
+
+        <div class="clock">
+            
+            <div class="hand hour" hourNYC am="true"></div>
+            <div class="hand minute" minuteNYC></div>
+            <div class="hand second" secondNYC></div>
+            <div class="number number1">1</div>
+            <div class="number number2">2</div>
+            <div class="number number3">3</div>
+            <div class="number number4">4</div>
+            <div class="number number5">5</div>
+            <div class="number number6">6</div>
+            <div class="number number7">7</div>
+            <div class="number number8">8</div>
+            <div class="number number9">9</div>
+            <div class="number number10">10</div>
+            <div class="number number11">11</div>
+            <div class="number number12">12</div>
+        </div>
+
+        <div class="clock">
+            
+            <div class="hand hour" hourTOK am="true"></div>
+            <div class="hand minute" minuteTOK></div>
+            <div class="hand second" secondTOK></div>
+            <div class="number number1">1</div>
+            <div class="number number2">2</div>
+            <div class="number number3">3</div>
+            <div class="number number4">4</div>
+            <div class="number number5">5</div>
+            <div class="number number6">6</div>
+            <div class="number number7">7</div>
+            <div class="number number8">8</div>
+            <div class="number number9">9</div>
+            <div class="number number10">10</div>
+            <div class="number number11">11</div>
+            <div class="number number12">12</div>
+        </div>
+    </div>
+
+    <div class="bgs">
+        <div class="city-bg">
+            <div class="city-day " PAR-DAY></div>
+            <div class="city-date" PAR-DATE></div>
+            <div class="city-name">Paris
+            </div>
+            <img class="img-city" loading="lazy" src="../../images/paris.jpg">
+        </div>
+
+        <div class="city-bg">
+            <div class="city-day" NYC-DAY></div>
+            <div class="city-date" NYC-DATE></div>
+            <div class="city-name">New York City
+            </div>
+            <img class="img-city" loading="lazy" src="../../images/newYork.jpg">
+
+        </div>
+
+        <div class="city-bg">
+            <div class="city-day" TOK-DAY></div>
+            <div class="city-date" TOK-DATE></div>
+            <div class="city-name">Tokyo
+            </div>
+            <img class="img-city" loading="lazy" src="../../images/tokyo.jpg">
+        </div>
+    </div>
+
+
+    <div class="loader-wrapper">
+        <span class="loader" ><span class="loader-inner"></span></span>
+        <div class="loading"> Loading... </div>
+    </div>   
+
+</body>
+
+<script>
+    document.querySelector('.loader-wrapper').classList.add('isActive');
+        
+        window.onload = () => {
+            document.querySelector('.loader-wrapper').classList.remove('isActive');
+        };
+</script>
+<script defer src="clock.js"></script>
+<script defer src="../../app.js"></script>
+</html> 
