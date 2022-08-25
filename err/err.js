@@ -1,5 +1,23 @@
-let start = false;
 const Background = document.querySelector('.error-background');
+const HEIGHT = 390; // pixels
+const WIDTH = 590; // pixels
+const SHAPES = [
+    {
+        type: 'rectangle',
+        quantity: 30
+    },
+    {
+        type: 'triangle',
+        quantity: 40
+    },
+    {
+        type: 'circle',
+        quantity: 40
+    }
+];
+let startPoint = false;
+
+
 document.querySelector('.loader-wrapper').classList.add('isActive');
 window.onload = () => {
     
@@ -7,13 +25,13 @@ window.onload = () => {
     document.querySelector('.error-container').classList.add('isVisible');
     setTimeout(() =>{
         document.querySelector('.error-image').classList.add('isVisible');
-        start = true;
+        startPoint = true;
     }, 1200);
 };
 
 
 class mesh{
-    constructor(shape = '', size = 5, position = {x: 0, y: 0}, velocity = {x: 0, y:0}){
+    constructor(type = '', size = 5, position = {x: 0, y: 0}, velocity = {x: 0, y:0}){
 
         this.DOMelement;
         this.position = position;
@@ -21,40 +39,40 @@ class mesh{
         this.width = size;
         this.velocity = velocity;
 
-        let lines = [];
-        switch(shape){ // configurating the shapes
+        let div; 
+
+        switch(type){ // configurating the shapes
             case 'triangle':
-                this.DOMelement = document.createElement(shape);
-                lines = [document.createElement('line1'), document.createElement('line2'), document.createElement('line3')];
-                lines.forEach((line) => {
-                    this.DOMelement.appendChild(line);
-                });
+                this.DOMelement = document.createElement('div');
+                this.DOMelement.className = type;
 
-                break;
-
-            case 'big-triangle':
-                this.DOMelement = document.createElement(shape);
-                lines = [document.createElement('big-line1'), document.createElement('big-line2'), document.createElement('big-line3')];
-                lines.forEach((line) => {
-                    this.DOMelement.appendChild(line);
-                });
+                for (let i = 0; i < 3; i++){
+                    div = document.createElement('div');
+                    div.className = `line${i + 1}`;
+                    this.DOMelement.appendChild(div);
+                }
+                
                 break;
 
             case 'rectangle':
-                this.DOMelement = document.createElement(shape);
+                this.DOMelement = document.createElement('div');
+                this.DOMelement.className = type;
                 break;
 
             case 'circle':
-                this.DOMelement = document.createElement(shape);
+                this.DOMelement = document.createElement('div');
+                this.DOMelement.className = type;
                 break;
 
             default:
                 break;
         }
     
-        if (this.DOMelement){
-            this.DOMelement.style.left = `${position.x}px`;
-            this.DOMelement.style.top = `${position.y}px`;
+        if (this.DOMelement !== undefined ){
+            this.DOMelement.style.left = `${this.position.x}px`;
+            this.DOMelement.style.top = `${this.position.y}px`;
+            this.DOMelement.style.height = `${this.height}px`;
+            this.DOMelement.style.width = `${this.width}px`;
         }
 
     }
@@ -71,25 +89,47 @@ class mesh{
 
 }
 
-function createShapes(acc = []){
-    for (let i = 0; i < 15; i++){
-    }
+function createShapes(type, quantity, acc){
+    let randomShape = null;
+    let randomSize = 0;
+    let randomPosition = {x: 0, y: 0}; //default for random values
 
-    for (let i = 0; i < 10; i++){        
-    }
+    for (let i = 0; i < quantity; i++){
+        randomSize = Math.floor(Math.random()*5) + 5;
+        randomPosition = {
+            x: Math.floor(Math.random()*WIDTH),
+            y: Math.floor(Math.random()*HEIGHT)
+        }
+        randomShape = new mesh(type, randomSize);
+        randomShape.setPosition(randomPosition);
 
-    for (let i = 0; i < 7; i++){
+        acc.push(randomShape);
     }
+}
 
-    for (let i = 0; i < 8; i++){
-    }
+function createSetOfShapes(acc = []){
 
+    SHAPES.forEach( (shape) => {
+        createShapes(shape.type, shape.quantity, acc);
+    });
+    
     return acc;
 }
 
 
-const shapes = createShapes();
+const setOfShapes = createSetOfShapes();
 
-let test = new mesh('circle', 20);
 
-Background.appendChild(test.DOMelement);
+function DisplaySetOfShapes( setOfShapes ){
+    setOfShapes.forEach( (shape) => {
+        Background.appendChild(shape.DOMelement);
+    });
+}
+
+DisplaySetOfShapes(setOfShapes);
+
+function animate(){
+    requestAnimationFrame(animate);
+}
+
+animate();

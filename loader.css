@@ -7,6 +7,7 @@
     top: 0;
     left: 0;
     opacity: 0;
+    visibility: hidden;
     z-index: -999999;
     background-color: #041735;
     display: flex;
@@ -35,6 +36,7 @@
 }
 
 .loader-wrapper.isActive{
+    visibility: visible;
     opacity: 1;
     z-index: 999999;
 }

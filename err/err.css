@@ -109,21 +109,20 @@ p{
 
 
 .triangle{
-    height: 25px;
-    aspect-ratio: 1;
     position: absolute;
+    opacity: .8;
 }
 
 .line1{
-    height: 3px;
+    height: 2px;
     width: 15px;
-    background-color: rgb(217, 217, 255, .9);
+    background-color: #333333;
 
 }
 
 .line2{
-    height: 3px;
-    background-color: rgb(217, 217, 255, .9);
+    height: 2px;
+    background-color: #333333;
     width: 15px;
     transform: rotate(60deg); 
     margin-left: -3px;
@@ -131,50 +130,17 @@ p{
 }
 
 .line3{
-    height: 3px;
+    height: 1px;
     width: 15px;
-    background-color: rgb(217, 217, 255, .9);
+    background-color: #333333;
     transform: rotate(-60deg); 
-    margin-left: 3px;
-    margin-top: -3px;
-}
-
-
-.big-triangle{
-    height: 25px;
-    aspect-ratio: 1;
-    position: absolute;
-}
-
-.big-line1{
-    height: 3px;
-    width: 25px;
-    background-color: rgb(217, 217, 255, .9);
-
-}
-
-.big-line2{
-    height: 3px;
-    background-color: rgb(217, 217, 255, .9);
-    width: 25px;
-    transform: rotate(60deg); 
-    margin-left: -7px;
-    margin-top: 7px;
-}
-
-.big-line3{
-    height: 3px;
-    width: 25px;
-    background-color: rgb(217, 217, 255, .9);
-    transform: rotate(-60deg); 
-    margin-left: 6px;
+    margin-left: 4px;
     margin-top: -2px;
 }
 
+
 .circle{
     position: absolute;
-    height: 10px; 
-    aspect-ratio: 1; 
     border: 2px solid #333333; 
     background-color: transparent;
     border-radius: 50%;
@@ -183,9 +149,9 @@ p{
 
 .rectangle{
     position: absolute;
-    height: 10px; 
-    aspect-ratio: 1; 
     border: 2px solid #333333; 
     background-color: transparent;
     opacity: .8;
+    border-left: 1px solid  #333333;
 }
+
