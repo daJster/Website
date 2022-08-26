@@ -104,7 +104,7 @@ p{
 .home:hover{
     background-color:  rgb(217, 217, 255, .8);
     box-shadow: 0px 0px 10px 1px rgb(0, 0, 0);
-    color: rgba(57, 138, 92, 0.8);
+    color: rgba(0, 0, 0, 0.8);
 }
 
 
@@ -116,13 +116,13 @@ p{
 .line1{
     height: 2px;
     width: 15px;
-    background-color: #333333;
+    background-color: rgb(51, 51, 51, .5);
 
 }
 
 .line2{
     height: 2px;
-    background-color: #333333;
+    background-color: rgb(51, 51, 51, .5);
     width: 15px;
     transform: rotate(60deg); 
     margin-left: -3px;
@@ -132,7 +132,7 @@ p{
 .line3{
     height: 1px;
     width: 15px;
-    background-color: #333333;
+    background-color: rgb(51, 51, 51, .5);
     transform: rotate(-60deg); 
     margin-left: 4px;
     margin-top: -2px;
@@ -141,7 +141,7 @@ p{
 
 .circle{
     position: absolute;
-    border: 2px solid #333333; 
+    border: 2px solid rgb(51, 51, 51, .5); 
     background-color: transparent;
     border-radius: 50%;
     opacity: .8;
@@ -149,9 +149,27 @@ p{
 
 .rectangle{
     position: absolute;
-    border: 2px solid #333333; 
+    border: 2px solid rgb(51, 51, 51, .5); 
     background-color: transparent;
     opacity: .8;
-    border-left: 1px solid  #333333;
+    border-left: 1px solid  rgb(51, 51, 51, .5);
 }
 
+
+.error-img{
+    position: absolute;
+    height: 180px;
+    aspect-ratio: 1;
+    top: 80px;
+    left: 120px;
+    opacity: .7;
+    animation: vibrate 2s linear infinite;
+}
+
+@keyframes vibrate {
+    from{
+        left: 120px;
+    }to{
+        left: 200px;
+    }
+}
