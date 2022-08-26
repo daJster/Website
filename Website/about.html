@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/loader.css">
+        <title>About me</title>
+        <link rel="icon" href="./images/J-icon.png">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="left-side">
+                    <div class="nav-link-wrapper ">
+                        <a href="index.html">Home</a>
+                    </div>
+
+                    <div class="nav-link-wrapper active-nav-link">
+                        <a href="about.html">About</a>
+                    </div>
+                </div>
+
+                <div class="bottom-side">
+                    <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+                        <span class="sr-only"><img loading="lazy" src="./images/arrow-down.png" style="top: -5px; height: 30px; aspect-ratio: 1; position: relative;"></span>
+                    </button>
+                    
+                    <nav>
+                        <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+                            <li class="active"> 
+                                <a href="list-education.html">
+                                    <span aria-hidden="true"></span>Education
+                                </a>
+                            <li>
+                                <a href="list-gadgets.html">
+                                    <span aria-hidden="true"></span>Gadgets
+                                </a>
+                            <li>
+                                <a href="list-games.html">
+                                    <span aria-hidden="true"></span>Games
+                                </a>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="right-side">
+                    <div class="brand">
+                        <a href="https://www.linkedin.com/in/jad-elkarchi-1894181bb/">Elkarchi Jad</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="two-column-wrapper">
+                    <div class="profile-img-wrapper">
+                        <img src="./images/portfolio12.jpg" style="border-radius: 15px; margin-left: 10px;">
+                    </div>
+
+                    <div class="profile-content-wrapper" style=" margin-left: 10px;">
+                        <h3 style="color: #0b0839;">Hi, thanks for visiting my website.</h3>
+                        <p>I'm still working on this amazing website... wish me luck ! </p> 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="loader-wrapper isActive">
+            <span class="loader" ><span class="loader-inner"></span></span>
+            <div class="loading"> Loading... </div>
+        </div>   
+
+    </body>
+    
+    <script>
+        document.querySelector('.loader-wrapper').classList.add('isActive');
+        
+        window.onload = () => {
+            document.querySelector('.loader-wrapper').classList.remove('isActive');
+        };
+    </script>
+    <script src="./scripts/build/app.js"></script>
+
+</html>
