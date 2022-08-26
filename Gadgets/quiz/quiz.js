@@ -1,11 +1,59 @@
 const MAX_LEVEL = 5;
 
-const audio1 = new Audio('./audio/audio1.mp3');
-const audio2 = new Audio('./audio/audio2.mp3');
-const audio3 = new Audio('./audio/audio3.mp3');
-const audio4 = new Audio('./audio/audio4.mp3');
+const audio1 = new Audio('./audio/correct-audio.mp3');
+const audio2 = new Audio('./audio/wrong-audio.mp3');
+const audio3 = new Audio('./audio/aww-audio.mp3');
+const audio4 = new Audio('./audio/wow-audio.mp3');
 
-const audios = [audio4, audio3, audio2, audio1];
+const audios = [audio1, audio2, audio3, audio4];
+
+/*  Timer */
+let sec = 0;
+let min = 0;
+let hrs = 0;
+let timeText = '00:00:00';
+let t;
+
+function tick(){
+    sec++;
+    if (sec >= 60) {
+        sec = 0;
+        min++;
+        if (min >= 60) {
+            min = 0;
+            hrs++;
+        }
+    }
+}
+
+function add() {
+    tick();
+    timeText = (hrs > 9 ? hrs : "0" + hrs) 
+        	 + ":" + (min > 9 ? min : "0" + min)
+       		 + ":" + (sec > 9 ? sec : "0" + sec);
+    timer();
+}
+
+function timer() {
+    t = setTimeout(add, 1000);
+}
+
+function stopTimer(){
+    clearTimeout(t);
+}
+
+function resetTimer(){
+    timeText = '00:00:00';
+    min = 0;
+    sec = 0;
+    hrs = 0;
+}
+
+function refreshTimer(){
+    stopTimer();
+    resetTimer();
+    timer();
+}
 
 class Quiz{
     constructor(type = '', difficulty = 0, score = 0, maxScore = 0){
@@ -59,6 +107,8 @@ function goBack(){
     document.querySelector('.math-container').classList.add('isVisible');
     document.querySelector('.result-screen').classList.remove('isVisible');
     resetQuiz();
+    stopTimer();
+    resetTimer();
 }
 
 function resetQuiz(){
@@ -78,21 +128,19 @@ function convertArray(arr){
 function verifyAnswer(){
     if (Math.abs(quiz.tasks[quiz.pointer].answer) === Math.abs(parseInt(document.querySelector('input').value))){ // correct answer
         quiz.score++;
+        audios[0].play();
         animateCorrect();
     } else { // wrong answer
         quiz.heart--;
         updateLifeBar();
-        pauseAudio();
         if (quiz.heart >= 0){
-            audios[quiz.heart + 1].play();
+            audios[1].play();
         }
         document.querySelector('.correct-answer-value').innerHTML = `${quiz.tasks[quiz.pointer].answer}`;
         animateWrong();
     }
 
     if (quiz.pointer === quiz.tasks.length - 1 || quiz.heart < 0){
-        pauseAudio();
-        audios[quiz.heart + 1].play();
         showResults();
     } else {
         quiz.pointer++;
@@ -122,22 +170,25 @@ function animateWrong(){
 }
 
 function showResults(){
-    if (quiz.score < 10 ){
-        document.querySelector('.result-value').style.marginLeft = '55px';
+    if (quiz.score/quiz.maxScore < .1 ){
+        document.querySelector('.result-value').style.marginLeft = '35px';
 
+    } else if (quiz.score === quiz.maxScore) {
+        document.querySelector('.result-value').style.fontSize = '3rem';
     } else {
-        document.querySelector('.result-value').style.marginLeft = '30px';
+        document.querySelector('.result-value').style.marginLeft = '12px';
     }
 
     if (quiz.score === quiz.maxScore){
-        pauseAudio();
         audios[3].play();
+    } else if (quiz.heart < 0){
+        audios[2].play();
     }
 
     document.querySelector('.result-time').innerHTML = timeText;
     stopTimer();
     resetTimer();
-    document.querySelector('.result-value').innerHTML = `${quiz.score}`;
+    document.querySelector('.result-value').innerHTML = `${Math.floor((quiz.score/quiz.maxScore)*100)}%`;
     document.querySelector('.result-screen').classList.add('isVisible');
 }
 
@@ -146,6 +197,8 @@ function tryAgain(){
     quiz.heart = 2;
     quiz.pointer = 0;
     restoreLife();
+    pauseAudio();
+    refreshTimer();
     document.querySelector('.result-screen').classList.remove('isVisible');
     document.querySelector('input').value = '';
     document.querySelector('.math-score').innerHTML = `${quiz.score}/${quiz.maxScore}`;
@@ -278,41 +331,3 @@ document.querySelector('.star2').addEventListener('click', () => {addDifficulty(
 document.querySelector('.star3').addEventListener('click', () => {addDifficulty(3);});
 document.querySelector('.star4').addEventListener('click', () => {addDifficulty(4);});
 
-/*  Timer */
-let sec = 0;
-let min = 0;
-let hrs = 0;
-let timeText = '00:00:00';
-let t;
-
-function tick(){
-    sec++;
-    if (sec >= 60) {
-        sec = 0;
-        min++;
-        if (min >= 60) {
-            min = 0;
-            hrs++;
-        }
-    }
-}
-
-function add() {
-    tick();
-    timeText = (hrs > 9 ? hrs : "0" + hrs) 
-        	 + ":" + (min > 9 ? min : "0" + min)
-       		 + ":" + (sec > 9 ? sec : "0" + sec);
-    timer();
-}
-
-function timer() {
-    t = setTimeout(add, 1000);
-}
-
-function stopTimer(){
-    clearTimeout(t);
-}
-
-function resetTimer(){
-    timeText = '00:00:00';
-}
