@@ -1,4 +1,5 @@
 const chessBoard = document.querySelector('.chess-board');
+const pup = [document.querySelectorAll('.pop-up-pawn')[0] /** B */, document.querySelectorAll('.pop-up-pawn')[1] /** W */];
 const BOARD_SIZE = 8;
 const GREEN = 'rgb(118, 150, 86)';
 const BROWN = 'rgb(194, 194, 33)';
@@ -14,8 +15,9 @@ const EMPTY_BOARD = [
 ];
 
 class Game{
-    constructor(board){
+    constructor(board, currentPlayer = 'W'){
         this.board = board;
+        this.currentPlayer = currentPlayer;
     }
 
     startGame(){
@@ -99,18 +101,31 @@ class Piece{
         }
 
 
+
+        game.currentPlayer = (this.color === 'B') ? 'W' : 'B';
         game.board[coord.x][coord.y] = null;
         this.squareIDX = nextSquareIDX.x*BOARD_SIZE + nextSquareIDX.y;
         game.board[nextSquareIDX.x][nextSquareIDX.y] = this;
         this.moved = true;
         clearSquare(chessBoard.children[this.squareIDX]);
         this.create();
+
+        if (this.name === 'pawn'){
+            if (this.color === 'B' && this.squareIDX >= 56){
+                pup[0].classList.add('isVisible');
+            } else if (this.color === 'W' && this.squareIDX <= 7) {
+                pup[1].classList.add('isVisible');
+            }
+        }
     }
 
     pattern() {
         let coord = convertIDX(this.squareIDX);
         let arr = [];
         let idx, jdx;
+
+        if (this.color !== game.currentPlayer) return arr;
+
         switch(this.name){ // Patterns for each piece in chess 
             case 'pawn':
                 if (this.color === 'W'){
@@ -784,6 +799,21 @@ function gameOver(winnerColor){
     }, 4000);
 }
 
+/** Configurating the step where the pawn reaches the limit of the table, pretty detailed huh */
+
+
+pup.forEach( (pupElement, pupElementIndex) => {
+    pupElement.children[0].addEventListener('click', () => {replacePawn('rook', pupElementIndex);});
+    pupElement.children[1].addEventListener('click', () => {replacePawn('knight', pupElementIndex);});
+    pupElement.children[2].addEventListener('click', () => {replacePawn('queen', pupElementIndex);});
+    pupElement.children[3].addEventListener('click', () => {replacePawn('bishop', pupElementIndex);});
+});
+
+function replacePawn(name, colorID){
+    let color = (colorID === 0) ? 'B' : 'W';
+}
+
+/** ze end */
 
 game.startGame();
 
