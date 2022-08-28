@@ -806,23 +806,23 @@ function gameOver(winnerColor){
 
 pup.forEach( (pupElement, pupElementIndex) => {
     pupElement.children[0].addEventListener('click', () => {
-        replacePawn('rook', pupElementIndex);  
         pupElement.classList.remove('isVisible');
+        replacePawn('rook', pupElementIndex);  
     });
     
     pupElement.children[1].addEventListener('click', () => {
-        replacePawn('knight', pupElementIndex);
         pupElement.classList.remove('isVisible');
+        replacePawn('knight', pupElementIndex);
     });
     
     pupElement.children[2].addEventListener('click', () => {
-        replacePawn('queen', pupElementIndex); 
         pupElement.classList.remove('isVisible');
+        replacePawn('queen', pupElementIndex); 
     });
     
     pupElement.children[3].addEventListener('click', () => {
-        replacePawn('bishop', pupElementIndex);
         pupElement.classList.remove('isVisible');
+        replacePawn('bishop', pupElementIndex);
     });
 });
 
@@ -830,23 +830,24 @@ pup.forEach( (pupElement, pupElementIndex) => {
 function replacePawn(name, colorID){
     let color = (colorID === 0) ? 'B' : 'W';
 
-    console.log('check');
     if (color === 'B') {
         game.board[7].forEach( (piece, pieceIndex) => {
-            if (piece.name === 'pawn' && piece.color === 'B'){
+            if ( piece instanceof Piece && piece.name === 'pawn' && piece.color === 'B'){
                 piece.destroy();
-                piece = new Piece(name, color, 7*BOARD_SIZE + pieceIndex);
-                piece.create();
+                let newPiece = new Piece(name, color, 7*BOARD_SIZE + pieceIndex);
+                game.board[0][pieceIndex] = newPiece;
+                newPiece.create();
                 game.currentPlayer = game.currentPlayer[0];
                 return;
             }
         });
     } else {
         game.board[0].forEach( (piece, pieceIndex) => {
-            if (piece.name === 'pawn' && piece.color === 'W'){
+            if (piece instanceof Piece && piece.name === 'pawn' && piece.color === 'W'){
                 piece.destroy();
-                piece = new Piece(name, color, pieceIndex);
-                piece.create();
+                let newPiece = new Piece(name, color, pieceIndex);
+                game.board[0][pieceIndex] = newPiece;
+                newPiece.create();
                 game.currentPlayer = game.currentPlayer[0];
                 return;
             }
