@@ -17,7 +17,7 @@ const EMPTY_BOARD = [
 class Game{
     constructor(board, currentPlayer = 'W'){
         this.board = board;
-        this.currentPlayer = currentPlayer;
+        this.currentPlayer = currentPlayer; /** either B W BH WH */
     }
 
     startGame(){
@@ -113,8 +113,10 @@ class Piece{
         if (this.name === 'pawn'){
             if (this.color === 'B' && this.squareIDX >= 56){
                 pup[0].classList.add('isVisible');
+                game.currentPlayer += 'H';
             } else if (this.color === 'W' && this.squareIDX <= 7) {
                 pup[1].classList.add('isVisible');
+                game.currentPlayer += 'H';
             }
         }
     }
@@ -803,14 +805,53 @@ function gameOver(winnerColor){
 
 
 pup.forEach( (pupElement, pupElementIndex) => {
-    pupElement.children[0].addEventListener('click', () => {replacePawn('rook', pupElementIndex);});
-    pupElement.children[1].addEventListener('click', () => {replacePawn('knight', pupElementIndex);});
-    pupElement.children[2].addEventListener('click', () => {replacePawn('queen', pupElementIndex);});
-    pupElement.children[3].addEventListener('click', () => {replacePawn('bishop', pupElementIndex);});
+    pupElement.children[0].addEventListener('click', () => {
+        replacePawn('rook', pupElementIndex);  
+        pupElement.classList.remove('isVisible');
+    });
+    
+    pupElement.children[1].addEventListener('click', () => {
+        replacePawn('knight', pupElementIndex);
+        pupElement.classList.remove('isVisible');
+    });
+    
+    pupElement.children[2].addEventListener('click', () => {
+        replacePawn('queen', pupElementIndex); 
+        pupElement.classList.remove('isVisible');
+    });
+    
+    pupElement.children[3].addEventListener('click', () => {
+        replacePawn('bishop', pupElementIndex);
+        pupElement.classList.remove('isVisible');
+    });
 });
+
 
 function replacePawn(name, colorID){
     let color = (colorID === 0) ? 'B' : 'W';
+
+    console.log('check');
+    if (color === 'B') {
+        game.board[7].forEach( (piece, pieceIndex) => {
+            if (piece.name === 'pawn' && piece.color === 'B'){
+                piece.destroy();
+                piece = new Piece(name, color, 7*BOARD_SIZE + pieceIndex);
+                piece.create();
+                game.currentPlayer = game.currentPlayer[0];
+                return;
+            }
+        });
+    } else {
+        game.board[0].forEach( (piece, pieceIndex) => {
+            if (piece.name === 'pawn' && piece.color === 'W'){
+                piece.destroy();
+                piece = new Piece(name, color, pieceIndex);
+                piece.create();
+                game.currentPlayer = game.currentPlayer[0];
+                return;
+            }
+        });
+    }
 }
 
 /** ze end */

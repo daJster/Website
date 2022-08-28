@@ -495,6 +495,7 @@ input:focus{
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(13px);
+    box-shadow: 0px 0px 20px 1px rgb(255, 255, 255, .2);
 }
 
 .W-score, .B-score{
@@ -512,10 +513,12 @@ input:focus{
 
 .W-score{
     background-color: rgb(194, 194, 33, .6);
+    box-shadow: 0px 0px 20px 1px rgb(255, 255, 255, .2);
 }
 
 .B-score{
     background-color: rgb(118, 150, 86, .6);
+    box-shadow: 0px 0px 20px 1px rgb(255, 255, 255, .2);
 }
 
 .score-icon{
