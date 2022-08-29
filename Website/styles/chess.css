@@ -331,14 +331,11 @@ body{
 }
 
 .UI-start{
-    zoom: 130%;
     height: 260px;
     aspect-ratio: 1;
     position: absolute;
     opacity: 0;
     background: rgb(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 0px 5px 0px rgb(255, 255, 255, 0.5);
     border-radius: 15px;
     top: 50%;
     left: 50%;
@@ -370,14 +367,13 @@ body{
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
     transition: .2s ease-out;
-    backdrop-filter: blur(10px) ;
-    box-shadow: 0px 0px 5px 0px rgb(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 20px 0px rgb(0, 0, 0, 0.3);
     margin-bottom: 20px;
 }
 
 .start-game:hover{
-    backdrop-filter: blur(10px) ;
-    box-shadow: 0px 0px 5px 0px rgb(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 50px 0px rgb(0, 0, 0, 0.8);
+    background-color: rgb(255, 255, 255, 0.9);
 }
 
 input{
@@ -497,8 +493,6 @@ input:focus{
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(13px);
-    box-shadow: 0px 0px 20px 1px rgb(255, 255, 255, .2);
 }
 
 .W-score, .B-score{
@@ -506,7 +500,6 @@ input:focus{
     width: 60px;
     border-radius: 10px;
     padding: 20px;
-    backdrop-filter: blur(13px);
     display: grid;
     grid-template-columns: auto auto auto auto;
     column-gap: 0;
@@ -516,12 +509,10 @@ input:focus{
 
 .W-score{
     background-color: rgb(194, 194, 33, .6);
-    box-shadow: 0px 0px 20px 1px rgb(255, 255, 255, .2);
 }
 
 .B-score{
     background-color: rgb(118, 150, 86, .6);
-    box-shadow: 0px 0px 20px 1px rgb(255, 255, 255, .2);
 }
 
 .score-icon{
@@ -632,7 +623,6 @@ input:focus{
     background-color: rgb(255, 255, 255, .4);
     border-radius: 10px;
     transition: .2s ease-out;
-    backdrop-filter: blur(10px) ;
     box-shadow: 0px 0px 5px 0px rgb(255, 255, 255, .2);
 }
 

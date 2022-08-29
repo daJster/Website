@@ -1,5 +1,7 @@
 const chessBoard = document.querySelector('.chess-board');
 const pup = [document.querySelectorAll('.pop-up-pawn')[0] /** B */, document.querySelectorAll('.pop-up-pawn')[1] /** W */];
+const moveAudio = new Audio('./audios/movePiece.m4a');
+const chessOverAudio = new Audio('./audios/chessOver.m4a');
 const BOARD_SIZE = 8;
 const GREEN = 'rgb(118, 150, 86)';
 const BROWN = 'rgb(194, 194, 33)';
@@ -109,6 +111,7 @@ class Piece{
         this.moved = true;
         clearSquare(chessBoard.children[this.squareIDX]);
         this.create();
+        moveAudio.play();
 
         if (this.name === 'pawn'){
             if (this.color === 'B' && this.squareIDX >= 56){
@@ -774,6 +777,7 @@ function setBoardPieces(board){
 
 function gameOver(winnerColor){
     UI_screen.classList.remove('isNotActive');
+    chessOverAudio.play();
 
     setTimeout( () => {
         document.querySelector('.gameOverText').classList.add('show');
@@ -829,7 +833,7 @@ pup.forEach( (pupElement, pupElementIndex) => {
 
 function replacePawn(name, colorID){
     let color = (colorID === 0) ? 'B' : 'W';
-
+    startChessAudio.play();
     if (color === 'B') {
         game.board[7].forEach( (piece, pieceIndex) => {
             if ( piece instanceof Piece && piece.name === 'pawn' && piece.color === 'B'){
