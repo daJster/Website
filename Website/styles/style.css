@@ -394,24 +394,86 @@ textarea{
     position: absolute;
     top: -85px;
     height: 80px;
-    animation: float 8s linear infinite;
+    animation: float 10s linear infinite;
+}
+
+.fish > *{
+    height: 80px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    animation: float 6s linear infinite;
+}
+
+.fish1{
+    left: 1300px;
+    top: 180px;
+}
+
+.fish2{
+    left: 0px;
+    top: 340px;
+    animation: float 7s linear infinite;
+}
+
+.fish3{
+    left: 1300px;
+    top: 720px;
+    animation: float 15s linear infinite;
+}
+
+.fish4{
+    left: 0px;
+    top: 980px;
+    animation: float 50s linear infinite;
+}
+
+.fish7{
+    left: 0px;
+    top: 1280px;
+}
+
+.fish6{
+    left: 1300px;
+    top: 1680px;
+}
+
+.fish5{
+    left: 0px;
+    top: 2200px;
+    animation: float 50s linear infinite;
+}
+
+.rust{
+    left: 250px;
+    top: 2320px;
+    height: 30px;
+    animation: float .4s linear infinite;
+}
+
+.treasure{
+    left: 320px;
+    top: 2290px;
+    height: 100px;
+    animation: none;
+
 }
 
 @keyframes float {
     0%{
-        transform: rotate(0deg) translateY(0px);
+        transform: rotate(0deg) translateY(3px);
     }
     25%{
-        transform: rotate(3deg) translateY(3px);
+        transform: rotate(10deg) translateY(0px);
     }
     50%{
-        transform: rotate(0deg) translateY(0px);
+        transform: rotate(0deg) translateY(3px);
     }
     75%{
-    transform: rotate(-3deg) translateY(-3px);        
+    transform: rotate(-8deg) translateY(0px);        
     }
     100%{
-        transform: rotate(0deg) translateY(0px);
+        transform: rotate(0deg) translateY(3px);
     } 
 }
 

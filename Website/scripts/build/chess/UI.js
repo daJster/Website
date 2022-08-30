@@ -2,7 +2,7 @@ let player1 = ""; // player names
 let player2 = "";
 const UI_screen = document.querySelector('.UI-screen');
 const UI_start = document.querySelector('.UI-start');
-const startChessAudio = new Audio('./audios/startChess.m4a');
+const startChessAudio = new Audio('./audios/chess/startChess.m4a');
 const score = {'W' : document.querySelector('.W-score'), 'B': document.querySelector('.B-score')};
 
 setTimeout( () => {
