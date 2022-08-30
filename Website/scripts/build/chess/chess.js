@@ -63,7 +63,7 @@ class Piece{
         this.name = name;
         this.color = color;
         this.squareIDX = squareIDX;
-        this.imageURL = './images/' + name + color + '.png';
+        this.imageURL = './images/chess/' + name + color + '.png';
         this.DOMelement = null;
 
         this.DOTed = false; 

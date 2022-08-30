@@ -400,7 +400,7 @@ form button{
     cursor: pointer;
     height: 40px;
     background-color: transparent;
-    background-image: url('../images/no-sound-icon.jpg');
+    background-image: url('../images/samurai/no-sound-icon.jpg');
     background-size: cover;    
     aspect-ratio: 1;
     border-radius: 10px;
@@ -421,7 +421,7 @@ form button{
     height: 40px;
     width: 40px;
     border: none;
-    background-image: url('../images/restart.png');
+    background-image: url('../images/samurai/restart.png');
     background-size: contain;
     background-color: transparent;
     border-radius: 10px;

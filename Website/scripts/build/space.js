@@ -7,8 +7,8 @@ canvas.width = 1133;
 canvas.height = 600;
 
 let level = 0;
-let PNG = "./images/spaceship"+level+".png";
-let ALI = "./images/invader"+level+".png";
+let PNG = "./images/space/spaceship"+level+".png";
+let ALI = "./images/space/invader"+level+".png";
 const MAXLVL = 2;
 const MAXHLTH = 2;
 
@@ -345,8 +345,8 @@ const healthHeart = document.getElementsByClassName('heart');
 
 
 function updateAssets(){
-    PNG = "./images/spaceship"+level+".png";
-    ALI = "./images/invader"+level+".png";
+    PNG = "./images/space/spaceship"+level+".png";
+    ALI = "./images/space/invader"+level+".png";
 }
 
 function createParticles({object, color, number, coeff}){
@@ -376,7 +376,7 @@ function explodeInvader(invader, grid, invaderIndex, projectileIndex = null){
             position: invader.position,
             velocity: {x: 0, y: -0.6},
             type:  {type: 'PopUp', scale: 0.7},
-            url: './images/20pts.png',
+            url: './images/space/20pts.png',
             fades: true
         }));
 
@@ -390,7 +390,7 @@ function explodeInvader(invader, grid, invaderIndex, projectileIndex = null){
                 position: invader.position,
                 velocity: {x: invader.velocity.x, y: 1},
                 type:  types[chosenType],
-                url: './images/'+types[chosenType].type+'.png'
+                url: './images/space/'+types[chosenType].type+'.png'
             }));
     }
 
@@ -407,7 +407,7 @@ function explodeGrid(grid, gridIndex){
             position: grid.position,
             velocity: {x: 0, y: -0.6},
             type: {type: 'PopUp', scale: 0.7},
-            url: './images/100pts.png',
+            url: './images/space/100pts.png',
             fades: true
         }));
 
@@ -519,7 +519,7 @@ function applyUpgradeBonus(){
 function applyShieldBonus(){
     playerIsProtected = true;
     const spaceshipProtect = new Image();
-    spaceshipProtect.src = './images/spaceshipProtect.png';
+    spaceshipProtect.src = './images/space/spaceshipProtect.png';
     spaceshipProtect.onload = () => {
         player.image = spaceshipProtect;
         player.height = spaceshipProtect.height * 0.05;
@@ -646,7 +646,7 @@ function animate(){
                     invaderProjectiles.splice(invaderProjectileIndex, 1);
                 }, 0);
                 player.health -= 1;
-                player.image.src = "./images/spaceshipDamage.png";
+                player.image.src = "./images/space/spaceshipDamage.png";
                 count = 0;
             }
         }

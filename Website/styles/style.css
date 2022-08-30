@@ -392,8 +392,27 @@ textarea{
 
 .boat{
     position: absolute;
-    top: -80px;
+    top: -85px;
     height: 80px;
+    animation: float 8s linear infinite;
+}
+
+@keyframes float {
+    0%{
+        transform: rotate(0deg) translateY(0px);
+    }
+    25%{
+        transform: rotate(3deg) translateY(3px);
+    }
+    50%{
+        transform: rotate(0deg) translateY(0px);
+    }
+    75%{
+    transform: rotate(-3deg) translateY(-3px);        
+    }
+    100%{
+        transform: rotate(0deg) translateY(0px);
+    } 
 }
 
 .wave1, .wave2, .wave3{
@@ -401,7 +420,7 @@ textarea{
     height: 52px;
     width: 150%;
     margin-left: -50%;
-    background-image: url('../images/waves1.svg');
+    background-image: url('../images/svg/waves1.svg');
     margin-top: -52px;
     background-repeat: repeat-x;
     background-size: contain;
@@ -672,7 +691,7 @@ textarea{
     top: 550px;
     z-index: -1;
     opacity: .8;
-    background: url('../images/sand-bottom.svg');
+    background: url('../images/svg/sand-bottom.svg');
     background-repeat: repeat;
     background-size: contain;
 }

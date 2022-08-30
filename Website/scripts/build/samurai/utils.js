@@ -7,19 +7,23 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
 
 
 
-let audio1 = new Audio('./audios/ost.mp3');
+let audio1 = new Audio('./audios/samurai/ost1.mp3');
+let audio2 = new Audio('./audios/samurai/ost2.mp3');
+let audio3 = new Audio('./audios/samurai/ost3.mp3');
+let audio4 = new Audio('./audios/samurai/ost4.mp3');
 
-const osts = [audio1, audio1, audio1, audio1, audio1];
+
+const osts = [audio1, audio4, audio2, audio3, audio4];
 let playedAudio = osts[Math.floor(Math.random()*osts.length)];
 
 function sound(){
     if (document.getElementsByClassName("sound")[0].getAttribute("sound") === "off"){
         document.getElementsByClassName("sound")[0].setAttribute("sound", "on");
-        document.getElementsByClassName("sound")[0].style.backgroundImage = "url('./images/sound-icon.jpg')";
+        document.getElementsByClassName("sound")[0].style.backgroundImage = "url('./images/samurai/sound-icon.jpg')";
         playedAudio.play();
     } else{
         document.getElementsByClassName("sound")[0].setAttribute("sound", "off");
-        document.getElementsByClassName("sound")[0].style.backgroundImage = "url('./images/no-sound-icon.jpg')";
+        document.getElementsByClassName("sound")[0].style.backgroundImage = "url('./images/samurai/no-sound-icon.jpg')";
         playedAudio.pause();
     }
 }

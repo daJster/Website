@@ -1,9 +1,9 @@
 const MAX_LEVEL = 5;
 
-const audio1 = new Audio('./audios/correct-audio.mp3');
-const audio2 = new Audio('./audios/wrong-audio.mp3');
-const audio3 = new Audio('./audios/aww-audio.mp3');
-const audio4 = new Audio('./audios/wow-audio.mp3');
+const audio1 = new Audio('./audios/quiz/correct-audio.mp3');
+const audio2 = new Audio('./audios/quiz/wrong-audio.mp3');
+const audio3 = new Audio('./audios/quiz/aww-audio.mp3');
+const audio4 = new Audio('./audios/quiz/wow-audio.mp3');
 
 const audios = [audio1, audio2, audio3, audio4];
 

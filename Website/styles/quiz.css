@@ -23,7 +23,7 @@ body{
     background-color: #f5ebeb;
     overflow: hidden;
     overflow-y: hidden;
-    background-image: url("../images/mathBG.png");
+    background-image: url("../images/quiz/mathBG.png");
     background-size:     cover;                      /* <------ */
     background-repeat:   no-repeat;
 }
@@ -240,7 +240,7 @@ body{
     border: none;
     aspect-ratio: 1;
     background-color: rgb(255, 255, 255, 0.2);
-    background-image: url('../images/menu-icon.jpg');
+    background-image: url('../images/quiz/menu-icon.jpg');
     background-size:     cover;                      /* <------ */
     background-repeat:   no-repeat;
     backdrop-filter: blur(10px);

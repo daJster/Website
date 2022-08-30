@@ -23,7 +23,7 @@ body{
     background-color: #f5ebeb;
     overflow: hidden;
     overflow-y: hidden;
-    background-image: url("../images/stars.jpeg");
+    background-image: url("../images/view/stars.jpeg");
     background-size:     cover;                      /* <------ */
     background-repeat:   no-repeat;
 }
@@ -414,8 +414,12 @@ footer{
 }
 
 .click-guide{
-    margin-left: 6px;
+    margin-left: 15px;
     margin-top: 38px;
+}
+
+.scroll-guide{
+    margin-left: 10px;
 }
 
 .guide.isFading{

@@ -36,7 +36,7 @@ class Scene{
 	}
 
 	addToolTip(point){
-		let spriteMap = new THREE.TextureLoader().load( './images/sprite.png' );
+		let spriteMap = new THREE.TextureLoader().load( './images/view/sprite.png' );
 		let spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap } );
 		let sprite = new THREE.Sprite( spriteMaterial );
 		sprite.about = point.about;
@@ -100,7 +100,7 @@ class City {
 
     addScenes(){
         for (let i = 0; i < this.numberOfScenes; i++){
-            this.scenes.push(new Scene('./images/City'+ this.pathNumber +'/asset'+ (i + 1) +'.jpg', camera));
+            this.scenes.push(new Scene('./images/view/City'+ this.pathNumber +'/asset'+ (i + 1) +'.jpg', camera));
         }
 
         this.scenes.forEach((scene, index) => {
@@ -152,7 +152,7 @@ function convertEuclidian(ro, phi, theta){
 }
 
 /** Initiate world view */
-let worldScene = new Scene('./assets/world.jpg', camera);
+let worldScene = new Scene('./images/view/world.jpg', camera);
 
 let worldPoints = [{
 		position : new THREE.Vector3(BOD.position.x, BOD.position.y, BOD.position.z),
