@@ -17,14 +17,19 @@
     }
 }
 
+html{
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
 body{
     margin: 0%;
     z-index: -1;
     background-image: url("../images/lists.jpg");
-    background-size: cover;                      /* <------ */
+    background-size: contain;                      /* <------ */
     background-repeat: repeat;
-    height: auto;
-    width: auto;
+    height:3080px;
+    width: 100%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: #f5ebeb;
     overflow: hidden;
@@ -371,147 +376,350 @@ textarea{
 
 /************************************************* MAIN OVERVIEW AND RESUME STYLE ***************************************************************/
 
+/************************************************* Wave animations ***************************************************************/
+
+.wave-div{
+    position: absolute;
+    left: 0;
+    top: 700px;
+    z-index:-2;
+    width: 100%;
+    height: 2380px;
+    background: linear-gradient(#acdeff, #407cb4 , #19547c , #002239, rgb(0, 0, 20));
+    box-shadow: 0px 0px 50px rgb(0, 0, 0, .5);
+    transition: background-color .6s linear;
+}
+
+.boat{
+    position: absolute;
+    top: -80px;
+    height: 80px;
+}
+
+.wave1, .wave2, .wave3{
+    display: block;
+    height: 52px;
+    width: 150%;
+    margin-left: -50%;
+    background-image: url('../images/waves1.svg');
+    margin-top: -52px;
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-position: center center;
+    transition: 1s ease-in;
+    }
+
+.wave1{
+    animation: wave 50s infinite linear;
+}
+
+.wave2{
+    margin-top: -55px;
+    width: 150%;
+    opacity: .5;
+    animation: wave 35s infinite linear;
+}
+
+.wave3{
+    margin-top: -58px;
+    width: 150%;
+    opacity: .3;
+    animation: wave 60s infinite linear;
+}
+
+@keyframes wave {
+    0%{
+        transform: translateX(0%);
+    }
+    50%{
+        transform: translateX(30%);
+    }
+    100%{
+        transform: translateX(0px);
+    }
+}
+ /***************************************************************************************************************/
+
+
+/************************************************* bubble animation ***************************************************************/
+
+
+
 .main-overview{
     position: absolute;
-    top: 50px;
+    top: -150px;
     left: 120px;
+    visibility: hidden;
+    opacity: 0;
     margin: 0;
     height: 600px;
     width: 1120px;
     background-color: pink;
     border: 2px solid black;
+    transition: .5s ease-out;
+}
+
+.main-overview.isVisible{
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(200px);
+}
+
+.resume-education.isVisible, .resume-expertise.isVisible, .resume-languages.isVisible, .widget-art.isVisible, .return-overview.isVisible{
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-500px);    
+} 
+
+.resume-programing-languages.isVisible, .resume-softwares-tools.isVisible, .resume-hobbies.isVisible, .resume-achievements.isVisible{
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(500px);
 }
 
 .resume-programing-languages{
     position: absolute;
-    top: 780px;
-    left: 120px;
+    top: 60px;
+    left: -380px;
     margin: 0;
+    visibility: hidden;
+    opacity: 0;
     height: 600px;
     width: 400px;
     background-color: pink;
     border: 2px solid black;
+    transition: .4s ease-out;
 }
+
 
 .resume-education{
     position: absolute;
-    top: 780px;
-    left: 580px;
+    top: 60px;
+    left: 1080px;
     margin: 0;
+    visibility: hidden;
+    opacity: 0;
     height: 500px;
     width: 660px;
     background-color: pink;
     border: 2px solid black;
+    transition: .8s ease-out;
 }
 
 .resume-expertise{
     position: absolute;
-    top: 1320px;
-    left: 580px;
+    top: 600px;
+    left: 1080px;
     margin: 0;
+    visibility: hidden;
+    opacity: 0;
     height: 420px;
     width: 660px;
     background-color: pink;
     border: 2px solid black;
+    transition: .5s ease-out;
 }
 
 .resume-softwares-tools{
     position: absolute;
-    top: 1420px;
-    left: 120px;
+    top: 700px;
+    left: -380px;
     margin: 0;
+    visibility: hidden;
+    opacity: 0;
     height: 400px;
     width: 400px;
     background-color: pink;
     border: 2px solid black;
+    transition: .7s ease-out;
 }
 
 .resume-languages{
     position: absolute;
-    top: 1780px;
-    left: 580px;
+    top: 1060px;
+    left: 1080px;
     margin: 0;
+    visibility: hidden;
+    opacity: 0;
     height: 200px;
     width: 660px;
     background-color: pink;
     border: 2px solid black;
+    transition: 1s ease-out;
 }
 
 .resume-hobbies{
     position: absolute;
-    top: 1860px;
-    left: 120px;
+    top: 1160px;
+    left: -380px;
     margin: 0;
+    visibility: hidden;
+    opacity: 0;
     height: 100px;
     width: 400px;
     background-color: pink;
     border: 2px solid black;
+    transition: .9s ease-out;
 }
 
 .widget-art{
     position: absolute;
-    top: 2020px;
-    left: 820px;
+    top: 1300px;
+    left: 1320px;
     margin: 0;
+    visibility: hidden;
+    opacity: 0;
     height: 200px;
     width: 400px;
     background-color: pink;
     border: 2px solid black;
+    transition: 1.2s ease-out;
 }
 
 .resume-achievements{
     position: absolute;
-    top: 2020px;
-    left: 120px;
+    top: 1300px;
+    left: -380px;
     margin: 0;
+    visibility: hidden;
+    opacity: 0;
     height: 200px;
     width: 660px;
     background-color: pink;
     border: 2px solid black;
+    transition: 1.2s ease-out;
 }
 
 .resume-main-goals{
     position: absolute;
-    top: 2280px;
+    top: 1840px;
     left: 120px;
+    visibility: hidden;
+    opacity: 0;
     margin: 0;
     height: 100px;
     width: 1100px;
     background-color: pink;
     border: 2px solid black;
+    transition: .5s ease-out;
+}
+
+.resume-main-goals.isVisible{
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(-300px);
 }
 
 .resume-brief-paragraph{
     position: absolute;
-    top: 2480px;
+    top: 120px;
     left: 230px;
+    visibility: hidden;
+    opacity: 0;
     margin: 0;
     height: 400px;
     width: 900px;
     background-color: pink;
     border: 2px solid black;
+    transition: .5s ease-out;
+}
+
+.resume-brief-paragraph.isVisible{
+    visibility: visible;
+    opacity: 1;
 }
 
 .return-overview{
     position: fixed;
     top: 480px;
-    left: 1280px;
+    left: 1780px;
     margin: 0;
+    visibility: hidden;
+    opacity: 0;
     height: 50px;
     width: 50px;
     background-color: pink;
     border: 2px solid black;
+    transition: 3s ease-out;
 }
 
 .made-with-love{
     position: absolute;
-    top: 3000px;
+    top: 560px;
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
+    visibility: hidden;
+    opacity: 0;
     margin-left: -30px;
     height: 50px;
     width: 400px;
     background-color: pink;
     border: 2px solid black;
+    transition: 1.5s ease-out;
+}
+
+.made-with-love.isVisible{
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, 105px);
+}
+
+.sand-bottom{
+    width: 100%;
+    height: 170px;
+    position: absolute;
+    top: 550px;
+    z-index: -1;
+    opacity: .8;
+    background: url('../images/sand-bottom.svg');
+    background-repeat: repeat;
+    background-size: contain;
+}
+
+ /************************************************* magnet pages ***************************************************************/
+
+ .split-container{
+    height: 3080px;
+ }
+
+ .page1{
+    height: 680px;
+    width: 100%;
+}
+
+.page2{
+    position: absolute;
+    top: 690px;
+    height: 1660px;
+    width: 100%;
+}
+
+.page3{
+    position: absolute;
+    top: 2360px;
+    height: 720px;
+    width: 100%;
+}
+
+/*************************************************** ALGAES *********************************************/
+
+
+.algae1, .algae2, .algae3{
+    height: 100px;
+    position: absolute;
+    opacity: .4;
+    z-index: -2;
+    top: 575px;
+}
+
+.algae2{
+    margin-top: 15px;
+    right: 0;
+}
+
+.algae3{
+    left: 50%;
+    height: 110px;
+    margin-top: 5px;
 }

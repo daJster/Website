@@ -4,8 +4,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./styles/style.css">
         <link rel="stylesheet" href="./styles/loader.css">
+        <link rel="stylesheet" href="./styles/style.css">
         <title>Home page</title>
         <link rel="icon" href="./images/J-icon.png">
     </head>
@@ -24,7 +24,6 @@
             </div> 
 
             <div class="container">
-
                 <div class="nav-wrapper">
                     <div class="left-side">
                         <div class="nav-link-wrapper active-nav-link">
@@ -77,59 +76,88 @@
 
 
             <div class="main-page">
-                <div class="main-overview">
-
-                </div>
-
-                <div class="resume-programing-languages">
-
-                </div>
-
-                <div class="resume-education">
-
-                </div>
-
-                <div class="resume-expertise">
-
-                </div>
-
-                <div class="resume-softwares-tools">
-
-                </div>
-
-                <div class="resume-languages">
-
-                </div>
-
-                <div class="resume-hobbies">
-
-                </div>   
-
-                <div class="widget-art">
-
-                </div>
-                
-                <div class="resume-achievements">
-
-                </div>
-
-                <div class="resume-main-goals">
-
-                </div>
-
-                <div class="resume-brief-paragraph">
-
-                </div>
-
-                <div class="made-with-love">
-
-                </div>
 
                 <div class="return-overview">
+        
+                </div> 
 
+                <div class="split-container" >
+                    <section class="page1">
+
+                        <div class="main-overview">
+
+                        </div>
+
+                        <div class="wave-div">
+                            <img src="./images/boat.png"  class="boat">
+                            <div class="wave1"></div>
+                            <div class="wave2"></div>
+                            <div class="wave3"></div>
+                        </div>
+                    </section>
+
+                    <section class="page2">
+                        <div class="resume-programing-languages">
+
+                        </div>
+        
+                        <div class="resume-education">
+        
+                        </div>
+        
+                        <div class="resume-expertise">
+        
+                        </div>
+        
+                        <div class="resume-softwares-tools">
+        
+                        </div>
+        
+                        <div class="resume-languages">
+        
+                        </div>
+        
+                        <div class="resume-hobbies">
+        
+                        </div>   
+        
+                        <div class="widget-art">
+        
+                        </div>
+                        
+                        <div class="resume-achievements">
+        
+                        </div>
+        
+                        <div class="resume-main-goals">
+        
+                        </div>
+                    </section>
+
+                    <section class="page3">
+                        <div class="resume-brief-paragraph">
+        
+                        </div>
+        
+                        <div class="made-with-love">
+        
+                        </div>
+
+                        <div class="sand-bottom">
+                        </div>
+
+                        <div class="algaes">
+                            <img src="./images/algae1.png" class="algae1">
+                            <img src="./images/algae2.png" class="algae2">
+                            <img src="./images/algae3.png" class="algae3">
+                        </div>
+
+                    </section>
                 </div>
-            </div>
 
+
+            </div>
+                
 
             
     </body>
@@ -143,13 +171,20 @@
     </footer>
 
     <script>
+
         document.querySelector('.loader-wrapper').classList.add('isActive');
+        window.onbeforeunload = () => {
+            window.scrollTo(0, 0);
+        };
+
         window.onload = () => {
-            
+
             document.querySelector('.loader-wrapper').classList.remove('isActive');
+            document.querySelector('.main-overview').classList.add('isVisible');
         };
         
     </script>
+    <script src="./scripts/build/gsap.js"></script>
     <script src="./scripts/build/app.js"></script>
     <script src="./scripts/build/app_components.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
