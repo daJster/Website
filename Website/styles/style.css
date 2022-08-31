@@ -381,10 +381,10 @@ textarea{
 .wave-div{
     position: absolute;
     left: 0;
-    top: 700px;
+    top: 670px;
     z-index:-2;
     width: 100%;
-    height: 2380px;
+    height: 2410px;
     background: linear-gradient(#acdeff, #407cb4 , #19547c , #002239, rgb(0, 0, 20));
     box-shadow: 0px 0px 50px rgb(0, 0, 0, .5);
     transition: background-color .6s linear;
@@ -394,60 +394,78 @@ textarea{
     position: absolute;
     top: -85px;
     height: 80px;
+    aspect-ratio: 1;
+    background-image: url('../images/index/boat-left.png');
+    background-size: contain;
     animation: float 10s linear infinite;
 }
 
 .fish > *{
     height: 80px;
     position: absolute;
+    aspect-ratio: 1;
     top: 10px;
+    z-index: 9;
     left: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
     animation: float 6s linear infinite;
 }
 
 .fish1{
     left: 1300px;
     top: 180px;
+    background-image: url('../images/index/fish1-right.png');
 }
 
 .fish2{
     left: 0px;
     top: 340px;
     animation: float 7s linear infinite;
+    background-image: url('../images/index/fish2-left.png');
+
 }
 
 .fish3{
     left: 1300px;
     top: 720px;
     animation: float 15s linear infinite;
+    background-image: url('../images/index/fish3-right.png');
 }
 
 .fish4{
-    left: 0px;
+    left: 300px;
     top: 980px;
     animation: float 50s linear infinite;
+    background-image: url('../images/index/fish4.png');
 }
 
 .fish7{
     left: 0px;
     top: 1280px;
+    background-image: url('../images/index/fish7-left.png');
 }
 
 .fish6{
     left: 1300px;
     top: 1680px;
+    background-image: url('../images/index/fish6-right.png');
 }
 
 .fish5{
     left: 0px;
     top: 2200px;
     animation: float 50s linear infinite;
+    background-image: url('../images/index/fish5-left.png');
 }
 
 .rust{
-    left: 250px;
+    left: 230px;
     top: 2320px;
     height: 30px;
+    aspect-ratio: 1;
+    background-image: url('../images/index/rust.png');
+    background-size: contain;
     animation: float .4s linear infinite;
 }
 
@@ -455,8 +473,9 @@ textarea{
     left: 320px;
     top: 2290px;
     height: 100px;
+    aspect-ratio: 1;
     animation: none;
-
+    background-image: url('../images/index/treasure.png');
 }
 
 @keyframes float {
@@ -528,15 +547,13 @@ textarea{
 
 .main-overview{
     position: absolute;
-    top: -150px;
+    top: -180px;
     left: 120px;
     visibility: hidden;
     opacity: 0;
     margin: 0;
     height: 600px;
     width: 1120px;
-    background-color: pink;
-    border: 2px solid black;
     transition: .5s ease-out;
 }
 
@@ -558,6 +575,13 @@ textarea{
     transform: translateX(500px);
 }
 
+.page-component{
+    background-color: transparent;
+    border-radius: 15px;
+    box-shadow: 0px 0px 30px 2px rgb(0, 0, 0, .4);
+    backdrop-filter: blur(15px);
+}
+
 .resume-programing-languages{
     position: absolute;
     top: 60px;
@@ -567,8 +591,6 @@ textarea{
     opacity: 0;
     height: 600px;
     width: 400px;
-    background-color: pink;
-    border: 2px solid black;
     transition: .4s ease-out;
 }
 
@@ -582,8 +604,6 @@ textarea{
     opacity: 0;
     height: 500px;
     width: 660px;
-    background-color: pink;
-    border: 2px solid black;
     transition: .8s ease-out;
 }
 
@@ -596,8 +616,6 @@ textarea{
     opacity: 0;
     height: 420px;
     width: 660px;
-    background-color: pink;
-    border: 2px solid black;
     transition: .5s ease-out;
 }
 
@@ -610,8 +628,6 @@ textarea{
     opacity: 0;
     height: 400px;
     width: 400px;
-    background-color: pink;
-    border: 2px solid black;
     transition: .7s ease-out;
 }
 
@@ -624,8 +640,6 @@ textarea{
     opacity: 0;
     height: 200px;
     width: 660px;
-    background-color: pink;
-    border: 2px solid black;
     transition: 1s ease-out;
 }
 
@@ -638,8 +652,6 @@ textarea{
     opacity: 0;
     height: 100px;
     width: 400px;
-    background-color: pink;
-    border: 2px solid black;
     transition: .9s ease-out;
 }
 
@@ -652,8 +664,6 @@ textarea{
     opacity: 0;
     height: 200px;
     width: 400px;
-    background-color: pink;
-    border: 2px solid black;
     transition: 1.2s ease-out;
 }
 
@@ -666,8 +676,6 @@ textarea{
     opacity: 0;
     height: 200px;
     width: 660px;
-    background-color: pink;
-    border: 2px solid black;
     transition: 1.2s ease-out;
 }
 
@@ -680,8 +688,6 @@ textarea{
     margin: 0;
     height: 100px;
     width: 1100px;
-    background-color: pink;
-    border: 2px solid black;
     transition: .5s ease-out;
 }
 
@@ -700,8 +706,6 @@ textarea{
     margin: 0;
     height: 400px;
     width: 900px;
-    background-color: pink;
-    border: 2px solid black;
     transition: .5s ease-out;
 }
 
@@ -719,8 +723,7 @@ textarea{
     opacity: 0;
     height: 50px;
     width: 50px;
-    background-color: pink;
-    border: 2px solid black;
+    border-radius: 5px;
     transition: 3s ease-out;
 }
 
@@ -735,8 +738,6 @@ textarea{
     margin-left: -30px;
     height: 50px;
     width: 400px;
-    background-color: pink;
-    border: 2px solid black;
     transition: 1.5s ease-out;
 }
 
@@ -770,6 +771,7 @@ textarea{
 }
 
 .page2{
+    isolation: isolate;
     position: absolute;
     top: 690px;
     height: 1660px;
