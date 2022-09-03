@@ -192,6 +192,7 @@ function worldReload(){
 			}, 3000);
 			swipe.classList.add('isNotFading');
 			guide.classList.add('isNotFading');
+			alert('Please, click and drag your mouse so the world view appears.\n bug...');
 		}
 	});
 	worldIcon.classList.remove('isActive');
