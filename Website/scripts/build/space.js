@@ -11,7 +11,8 @@ let PNG = "./images/space/spaceship"+level+".png";
 let ALI = "./images/space/invader"+level+".png";
 const MAXLVL = 2;
 const MAXHLTH = 2;
-
+const pew = new Audio('./audios/space/pew.mp3');
+const agh = new Audio('./audios/space/agh.mp3');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class Player{
@@ -370,6 +371,7 @@ function createParticles({object, color, number, coeff}){
 
 function explodeInvader(invader, grid, invaderIndex, projectileIndex = null){
     player.score += 20;
+    agh.play();
     createParticles({object: invader, color:'#BAA0DE', number: 5, coeff: 5});
     bonus.push(new Bonus(
         {
@@ -750,6 +752,7 @@ addEventListener('keydown', ({ key }) => {
                     }
                 })
                 )
+                pew.play();
                 break;
 
             case 'ArrowUp' : 
