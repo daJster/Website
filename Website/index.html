@@ -185,6 +185,11 @@
     </footer>
 
     <script>
+        
+        if (window.innerHeight > 700) {
+            alert("you're using a phone, please switch to a laptop/Desktop.");
+            window.stop();
+        }
 
         document.querySelector('.loader-wrapper').classList.add('isActive');
         window.onbeforeunload = () => {

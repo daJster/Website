@@ -1,6 +1,7 @@
 const Background = document.querySelector('.error-background');
-const HEIGHT = 390; // pixels
-const WIDTH = 590; // pixels
+console.log(window.innerWidth)
+const HEIGHT = Math.floor(380*window.innerHeight/663);
+const WIDTH = Math.floor(580*window.innerWidth/1366); 
 const OFFSET = 7; // pixels
 const SHAPES = [
     {
@@ -18,14 +19,16 @@ const SHAPES = [
 ];
 
 
+if (window.innerWidth <= 980) {
+    alert("you're using a phone, please switch to a laptop/Desktop.");
+    window.stop();
+}
+
 document.querySelector('.loader-wrapper').classList.add('isActive');
 window.onload = () => {
     
     document.querySelector('.loader-wrapper').classList.remove('isActive');
     document.querySelector('.error-container').classList.add('isVisible');
-    setTimeout(() =>{
-        document.querySelector('.error-image').classList.add('isVisible');
-    }, 1200);
 };
 
 
