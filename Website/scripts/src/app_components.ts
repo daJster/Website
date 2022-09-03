@@ -85,6 +85,7 @@ seaObjects.push(new SeaObject(230, VELOCITY, document.querySelector('.fish4'), '
 seaObjects.push(new SeaObject(BORDER_MIN_X, VELOCITY, document.querySelector('.fish5'), 'fish5'))
 seaObjects.push(new SeaObject(1000, -VELOCITY, document.querySelector('.fish6'), 'fish6'))
 seaObjects.push(new SeaObject(BORDER_MIN_X, VELOCITY, document.querySelector('.fish7'), 'fish7'))
+seaObjects.push(new SeaObject(BORDER_MAX_X - 400, VELOCITY, document.querySelector('.fish8'), 'fish8'))
 seaObjects.push(new SeaObject(230, VELOCITY, document.querySelector('.rust'), 'rust'))
 seaObjects.push(new SeaObject(BORDER_MIN_X, VELOCITY, document.querySelector('.boat'), 'boat'))
 

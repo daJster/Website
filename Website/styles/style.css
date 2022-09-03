@@ -446,6 +446,16 @@ textarea{
     background-image: url('../images/index/fish7-left.png');
 }
 
+.fish8{
+    left: 0px;
+    top: 2080px;
+    height: 180px;
+    z-index: -2;
+    background-image: url('../images/index/fish8-left.png');
+    animation: none;
+    opacity: .6;
+}
+
 .fish6{
     left: 1300px;
     top: 1680px;
