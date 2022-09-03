@@ -100,7 +100,7 @@ class City {
 
     addScenes(){
         for (let i = 0; i < this.numberOfScenes; i++){
-            this.scenes.push(new Scene('./images/view/City'+ this.pathNumber +'/asset'+ (i + 1) +'.jpg', camera));
+            this.scenes.push(new Scene('./images/view/city'+ this.pathNumber +'/asset'+ (i + 1) +'.jpg', camera));
         }
 
         this.scenes.forEach((scene, index) => {
