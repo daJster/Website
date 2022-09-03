@@ -7,14 +7,9 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
 
 
 
-let audio1 = new Audio('./audios/samurai/ost1.mp3');
-let audio2 = new Audio('./audios/samurai/ost2.mp3');
-let audio3 = new Audio('./audios/samurai/ost3.mp3');
-let audio4 = new Audio('./audios/samurai/ost4.mp3');
+let audio = new Audio('./audios/samurai/ost.mp3');
 
-
-const osts = [audio1, audio4, audio2, audio3, audio4];
-let playedAudio = osts[Math.floor(Math.random()*osts.length)];
+let playedAudio = audio;
 
 function sound(){
     if (document.getElementsByClassName("sound")[0].getAttribute("sound") === "off"){
