@@ -24,6 +24,7 @@ body{
     background-image: url("../images/lists.jpg");
     background-size:     cover;                      /* <------ */
     background-repeat:   no-repeat;
+    background-repeat: repeat-y;
     position: relative;
     overflow: hidden;
     overflow-y: scroll;
