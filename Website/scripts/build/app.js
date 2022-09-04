@@ -47,48 +47,57 @@ const closeButton = document.querySelector(".pop-up-close");
 const sendButton = document.querySelector(".form button");
 
 
-popUp.addEventListener('click', (e) => {
-    if ( e.target.nodeName === "DIV"){
-        container.style.filter = "blur(0px)";
-        popUp.setAttribute("open", false);
-    }
-});
+if (popUp){
+    popUp.addEventListener('click', (e) => {
+        if ( e.target.nodeName === "DIV"){
+            container.style.filter = "blur(0px)";
+            popUp.setAttribute("open", false);
+        }
+    });
+}
 
-touchButton.addEventListener('click', () => {
-    const state = popUp.getAttribute("open");
-    if ( state === "true" ){
-        container.style.filter = "blur(0px)";
-        popUp.setAttribute("open", false);
-    }
-    else if (state === "false"){
-        popUp.setAttribute("open", true);
-        container.style.filter = "blur(10px)";
-    }
-});
+if (touchButton){
+    touchButton.addEventListener('click', () => {
+        const state = popUp.getAttribute("open");
+        if ( state === "true" ){
+            container.style.filter = "blur(0px)";
+            popUp.setAttribute("open", false);
+        }
+        else if (state === "false"){
+            popUp.setAttribute("open", true);
+            container.style.filter = "blur(10px)";
+        }
+    });
+}
 
-closeButton.addEventListener('click', () => {
-    const state = popUp.getAttribute("open");
-    if ( state === "true" ){
-        container.style.filter = "blur(0px)";
-        popUp.setAttribute("open", false);
-    }
-    else if (state === "false"){
-        popUp.setAttribute("open", true);
-        container.style.filter = "blur(10px)";
-    }
-});
+if (closeButton){
+    closeButton.addEventListener('click', () => {
+        const state = popUp.getAttribute("open");
+        if ( state === "true" ){
+            container.style.filter = "blur(0px)";
+            popUp.setAttribute("open", false);
+        }
+        else if (state === "false"){
+            popUp.setAttribute("open", true);
+            container.style.filter = "blur(10px)";
+        }
+    });
+}
 
-sendButton.addEventListener('click', () => {
-    const state = popUp.getAttribute("open");
-    if ( state === "true" ){
-        container.style.filter = "blur(0px)";
-        popUp.setAttribute("open", false);
-    }
-    else if (state === "false"){
-        popUp.setAttribute("open", true);
-        container.style.filter = "blur(10px)";
-    }
-});
+if (sendButton){
+    sendButton.addEventListener('click', () => {
+        const state = popUp.getAttribute("open");
+        if ( state === "true" ){
+            container.style.filter = "blur(0px)";
+            popUp.setAttribute("open", false);
+        }
+        else if (state === "false"){
+            popUp.setAttribute("open", true);
+            container.style.filter = "blur(10px)";
+        }
+    });
+}
+
 
 function sendEmail(){
     Email.send({
