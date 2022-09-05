@@ -1,0 +1,65 @@
+
+
+.game-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 240px;
+    height: 288px;
+    background: url('../images/coinRoom/map.png') no-repeat no-repeat;
+    transform: scale(3) translate(-20%, -5%);
+    image-rendering: pixelated;
+}
+
+.player-info{
+    position: absolute;
+    top: 2%;
+    left: 0;
+    padding: 1em;
+    display: flex;
+    gap: .5em;
+    align-items: flex-end;
+}
+
+label{
+    display: block;
+    font-weight: bold;
+    font-size: 20px;
+    color: #222034;
+}
+
+input[type='text'], button {
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 18px;
+    height: 44px;
+    border-radius: 4px;
+    outline: 0;
+}
+
+input[type='text']{
+    outline: 0;
+    padding-left: .5em;
+    border: 3px solid #222034;
+    width: 150px;
+    text-transform: uppercase;
+    opacity: .8;
+}
+
+input[type='text']:focus{
+    border-color: blueviolet;
+}
+
+button{
+    padding-left: .5em;
+    padding-right: .5em;
+    background: #59ff5a;
+    border: 0;
+    border-bottom: 2px solid #1e830b;
+    cursor: pointer;
+}
+
+button:active{
+    position: relative;
+    top: 1px;
+}
