@@ -129,8 +129,8 @@ interface Player {
             playerElements[addedPlayer.id] = characterElement
 
             //Fill in some initial state
-            characterElement.querySelector('.character_name')!.innerHTML = addedPlayer.name
-            characterElement.querySelector('.character_coins')!.innerHTML = `${addedPlayer.coins}`
+            characterElement.querySelector('.Character_name')!.innerHTML = addedPlayer.name
+            characterElement.querySelector('.Character_coins')!.innerHTML = `${addedPlayer.coins}`
 
             characterElement.setAttribute('data-color', addedPlayer.color)
             characterElement.setAttribute('data-direction', addedPlayer.direction)
