@@ -15,11 +15,11 @@ class KeyPressListener {
                 keySafe = true;
             }
         };
-        document.addEventListener('keydown', (event) => this.keydownFunction(event));
-        document.addEventListener('keyup', (event) => this.keyupFunction(event));
+        document.addEventListener('keydown', this.keydownFunction);
+        document.addEventListener('keyup', this.keyupFunction);
     }
     unbind() {
-        document.removeEventListener('keydown', (event) => this.keydownFunction(event));
-        document.removeEventListener('keyup', (event) => this.keyupFunction(event));
+        document.removeEventListener('keydown', this.keydownFunction);
+        document.removeEventListener('keyup', this.keyupFunction);
     }
 }
