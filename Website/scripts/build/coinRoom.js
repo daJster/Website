@@ -6,5 +6,18 @@ function getKeyString(x, y) {
     return `${x}x${y}`;
 }
 (function () {
-    firebase.auth().signInAnounymously();
+    firebase.auth().onAuthStateChanged((user) => {
+        console.log(user);
+        if (user) {
+            // you're logged in
+        }
+        else {
+            // you're logged out
+        }
+    });
+    firebase.auth().signInAnonymously().catch((err) => {
+        var errCode = err.code;
+        var errMessage = err.message;
+        alert(`${errCode}\n${errMessage}`);
+    });
 })();
