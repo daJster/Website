@@ -75,6 +75,7 @@ function getKeyString(x, y) {
     function handleArrowPress(xChange, yChange) {
         const newX = players[playerID].x + xChange;
         const newY = players[playerID].y + yChange;
+        console.log('check');
         if (true) {
             // you can move there
             players[playerID].x = newX;
@@ -94,19 +95,15 @@ function getKeyString(x, y) {
     function initGame() {
         new KeyPressListener('arrowUp', () => {
             handleArrowPress(0, -1);
-            console.log('check');
         });
         new KeyPressListener('arrowDown', () => {
             handleArrowPress(0, 1);
-            console.log('check');
         });
         new KeyPressListener('arrowLeft', () => {
             handleArrowPress(-1, 0);
-            console.log('check');
         });
         new KeyPressListener('arrowRight', () => {
             handleArrowPress(1, 0);
-            console.log('check');
         });
         const allPlayersREF = firebase.database().ref('players');
         const allCoinsREF = firebase.database().ref('coins');

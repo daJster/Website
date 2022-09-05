@@ -99,6 +99,7 @@ interface Player {
     function handleArrowPress(xChange: number, yChange: number){ // very interesting to reUse
         const newX: number = players[playerID].x + xChange
         const newY: number = players[playerID].y + yChange
+        console.log('check')
 
         if (true){
             // you can move there
@@ -123,23 +124,19 @@ interface Player {
     function initGame(): void{
 
         new KeyPressListener('arrowUp', () => {
-                handleArrowPress(0, -1)
-                console.log('check')
-            })
+            handleArrowPress(0, -1)
+         })
         
         new KeyPressListener('arrowDown', () => {
             handleArrowPress(0, 1)
-            console.log('check')
         })
         
         new KeyPressListener('arrowLeft', () => {
             handleArrowPress(-1, 0)
-            console.log('check')
         })
         
         new KeyPressListener('arrowRight', () => {
             handleArrowPress(1, 0)
-            console.log('check')
         })
 
         const allPlayersREF = firebase.database().ref('players')
