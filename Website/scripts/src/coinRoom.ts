@@ -105,7 +105,7 @@ interface Player {
 
         })
 
-        allPlayersREF.on('child-added', (snapshot: any) => {
+        allPlayersREF.on('child_added', (snapshot: any) => {
             // fires whenever a new node is added to the tree
 
             const addedPlayer: Player = snapshot.val()

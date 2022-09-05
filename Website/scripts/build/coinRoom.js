@@ -78,7 +78,7 @@ function getKeyString(x, y) {
         allPlayersREF.on('value', (snapshot) => {
             // fires whenever a change occurs
         });
-        allPlayersREF.on('child-added', (snapshot) => {
+        allPlayersREF.on('child_added', (snapshot) => {
             // fires whenever a new node is added to the tree
             const addedPlayer = snapshot.val();
             const characterElement = document.createElement('div');
