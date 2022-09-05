@@ -187,7 +187,13 @@ interface Player {
 
             gameContainer.appendChild(characterElement)
 
+        })
 
+        // remove character DOM element after they log out
+        allPlayersREF.on('child_removed', (snapshot: any) => {
+            const removedKey: any = snapshot.val().id
+            gameContainer.removeChild(playerElements[removedKey])
+            delete playerElements[removedKey] 
         })
     }
 
@@ -217,6 +223,8 @@ interface Player {
 
         } else {
             // you're logged out
+            
+        
         }
     })
 
