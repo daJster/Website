@@ -89,20 +89,65 @@ interface Player {
 
     let playerID: any
     let playerREF: any
+    let players: any = {}
     let playerElements: any = {}
 
 
     const gameContainer: HTMLElement | any = document.querySelector('.game-container')
 
 
-    function initGame(){
+    function handleArrowPress(xChange: number, yChange: number){ // very interesting to reUse
+        const newX: number = players[playerID].x + xChange
+        const newY: number = players[playerID].y + yChange
+
+        if (true){
+            // you can move there
+
+            players[playerID].x = newX
+            players[playerID].y = newY
+            
+            if (xChange === 1){
+                players[playerID].direction = 'right'
+            }
+            if (xChange === -1){
+                players[playerID].direction = 'left'
+            }
+            playerREF.set(players[playerID]) // updating the player in Firebase
+
+        } else {
+            // you can't move there
+
+        }
+    }
+
+    function initGame(): void{
+
+        new KeyPressListener('arrowUp', () => handleArrowPress(0, -1))
+        new KeyPressListener('arrowDown', () => handleArrowPress(0, 1))
+        new KeyPressListener('arrowLeft', () => handleArrowPress(-1, 0))
+        new KeyPressListener('arrowRight', () => handleArrowPress(1, 0))
+
         const allPlayersREF = firebase.database().ref('players')
         const allCoinsREF = firebase.database().ref('coins')
 
         //event listener everytime a new player joins/leaves/modifies the game there is a _snapshot_
         allPlayersREF.on('value', (snapshot: any) => {
             // fires whenever a change occurs
+            players = snapshot.val() || {}
+            Object.keys(players).forEach((key: any) => {
+                const characterState = players[key]
+                let el: HTMLElement = playerElements[key]
+                el.querySelector('.Character_name')!.innerHTML = characterState.name
+                el.querySelector('.Character_coins')!.innerHTML = `${characterState.coins}`
+    
+                el.setAttribute('data-color', characterState.color)
+                el.setAttribute('data-direction', characterState.direction)
 
+                const left: string = 16 * characterState.x + 'px'
+                const top: string = 16 * characterState.y - 4 + 'px'
+                
+                el.style.transform = `translate3d(${left}, ${top}, 0)`
+            })
         })
 
         allPlayersREF.on('child_added', (snapshot: any) => {
@@ -142,7 +187,7 @@ interface Player {
 
             gameContainer.appendChild(characterElement)
 
-            
+
         })
     }
 
@@ -157,7 +202,7 @@ interface Player {
             playerREF.set({
                 id: playerID,
                 name: name,
-                direction: (Math.random() > .5) ? 'left' : 'right',
+                direction: (Math.random() >= .5) ? 'left' : 'right',
                 color: randomFromArray(playerColors),
                 x: 4,
                 y: 4,
