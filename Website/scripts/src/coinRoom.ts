@@ -122,10 +122,25 @@ interface Player {
 
     function initGame(): void{
 
-        new KeyPressListener('arrowUp', () => handleArrowPress(0, -1))
-        new KeyPressListener('arrowDown', () => handleArrowPress(0, 1))
-        new KeyPressListener('arrowLeft', () => handleArrowPress(-1, 0))
-        new KeyPressListener('arrowRight', () => handleArrowPress(1, 0))
+        new KeyPressListener('arrowUp', () => {
+                handleArrowPress(0, -1)
+                console.log('check')
+            })
+        
+        new KeyPressListener('arrowDown', () => {
+            handleArrowPress(0, 1)
+            console.log('check')
+        })
+        
+        new KeyPressListener('arrowLeft', () => {
+            handleArrowPress(-1, 0)
+            console.log('check')
+        })
+        
+        new KeyPressListener('arrowRight', () => {
+            handleArrowPress(1, 0)
+            console.log('check')
+        })
 
         const allPlayersREF = firebase.database().ref('players')
         const allCoinsREF = firebase.database().ref('coins')

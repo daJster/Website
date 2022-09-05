@@ -92,10 +92,22 @@ function getKeyString(x, y) {
         }
     }
     function initGame() {
-        new KeyPressListener('arrowUp', () => handleArrowPress(0, -1));
-        new KeyPressListener('arrowDown', () => handleArrowPress(0, 1));
-        new KeyPressListener('arrowLeft', () => handleArrowPress(-1, 0));
-        new KeyPressListener('arrowRight', () => handleArrowPress(1, 0));
+        new KeyPressListener('arrowUp', () => {
+            handleArrowPress(0, -1);
+            console.log('check');
+        });
+        new KeyPressListener('arrowDown', () => {
+            handleArrowPress(0, 1);
+            console.log('check');
+        });
+        new KeyPressListener('arrowLeft', () => {
+            handleArrowPress(-1, 0);
+            console.log('check');
+        });
+        new KeyPressListener('arrowRight', () => {
+            handleArrowPress(1, 0);
+            console.log('check');
+        });
         const allPlayersREF = firebase.database().ref('players');
         const allCoinsREF = firebase.database().ref('coins');
         //event listener everytime a new player joins/leaves/modifies the game there is a _snapshot_
