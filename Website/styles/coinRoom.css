@@ -65,3 +65,88 @@ button:active{
     position: relative;
     top: 1px;
 }
+
+
+/**************    Styles for characters     *************/
+
+.grid-cell{
+    position: absolute;
+    width: 16px;
+    aspect-ratio: 1;
+}
+
+.Character{
+    transition: transform .2s;
+}
+
+.Character.you {
+    z-index: 1;
+}
+
+.Character.you .Character_you-arrow{
+    display: block;
+}
+
+.Character_you-arrow{
+    display: none;
+    position: absolute;
+    top: -18px;
+    left: 5px;
+    width: 7px;
+    height: 5px;
+    background: url('./images/coinRoom/arrow.png') no-repeat no-repeat;
+}
+
+.Character_sprite{
+    overflow: hidden;
+    top: -3px;
+    background: url('./images/characters.png');
+}
+
+.Character[data-direction='right'] .Character_sprite{
+    background-position-x: 16px;
+}
+
+.Character[data-color='red'] .Character_sprite{
+    background-position-y: -16px;
+}
+
+.Character[data-color='orange'] .Character_sprite{
+    background-position-y: -32px;
+}
+
+.Character[data-color='yellow'] .Character_sprite{
+    background-position-y: -48px;
+}
+
+.Character[data-color='green'] .Character_sprite{
+    background-position-y: -64px;
+}
+
+.Character[data-color='purple'] .Character_sprite{
+    background-position-y: -88px;
+}
+
+.Character_shadow{
+    background: url('./images/coinRoom/shadow.png') no-repeat no-repeat;
+}
+
+.Character_name-container{
+    position: absolute;
+    top: -12px;
+    left: -5px;
+    font-size: 5px;
+    padding: 1px 2px 1px;
+    border-radius: 2px;
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.Character_coins{
+    margin-left: 1px;
+    color: goldenrod;
+}
+

@@ -142,6 +142,7 @@ interface Player {
 
             gameContainer.appendChild(characterElement)
 
+            
         })
     }
 
