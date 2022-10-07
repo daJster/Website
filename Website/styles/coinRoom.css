@@ -93,6 +93,48 @@ button:active {
   top: 1px;
 }
 
+
+.popup-message{
+  position: absolute;
+  height: auto;
+  width: auto;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  border-radius: 2px;
+  border-bottom-left-radius: 0px;
+  background-color: rgb(255, 255, 255);
+  padding: 3px;
+  margin-top: -15px;
+  margin-left: 10px;
+}
+
+.popup-message.Hidden{
+  visibility: hidden;
+  opacity: 0;
+}
+
+
+.popup-triangle{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border: 3px solid;
+  border-color: transparent transparent rgb(255, 255, 255) transparent;
+  transform: rotate(-45deg);
+  margin-left: -3px;
+  margin-bottom: -3px;
+}
+
+.popup-text{
+  font-size: 7px;
+  color: black;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
 /* Characters */
 .grid-cell {
   position: absolute;

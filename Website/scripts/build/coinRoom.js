@@ -124,6 +124,8 @@ const mapData = {
     const gameContainer = document.querySelector(".game-container");
     const playerNameInput = document.querySelector("#player-name");
     const playerColorButton = document.querySelector("#player-color");
+    const playerMessageInput = document.querySelector("#player-text");
+    const playerMessageButton = document.querySelector("#player-send");
   
   
     function placeCoin() {
@@ -194,6 +196,16 @@ const mapData = {
           const left = 16 * characterState.x + "px";
           const top = 16 * characterState.y - 4 + "px";
           el.style.transform = `translate3d(${left}, ${top}, 0)`;
+
+          if (characterState.messagePrev !==  characterState.messageCurr){
+            el.querySelector('.popup-message').classList.remove("Hidden");
+            el.querySelector('.popup-text').innerHTML = characterState.messageCurr;
+            setTimeout( () => {
+                el.querySelector('.popup-message').classList.add("Hidden");
+            }, 3000);
+        }
+
+
         })
       })
       
@@ -206,13 +218,21 @@ const mapData = {
           characterElement.classList.add("you");
         }
         characterElement.innerHTML = (`
-          <div class="Character_shadow grid-cell"></div>
-          <div class="Character_sprite grid-cell"></div>
-          <div class="Character_name-container">
+        <div class="Character_shadow grid-cell"></div>
+
+        <div class="Character_sprite grid-cell"></div>
+
+        <div class="Character_name-container">
             <span class="Character_name"></span>
             <span class="Character_coins">0</span>
-          </div>
-          <div class="Character_you-arrow"></div>
+        </div>
+
+        <div class="Character_you-arrow"></div>
+          
+        <div class="popup-message Hidden">
+            <div class="popup-text"></div>
+            <div class="popup-triangle"></div>
+        </div>
         `);
         playerElements[addedPlayer.id] = characterElement;
   
@@ -290,6 +310,34 @@ const mapData = {
           color: nextColor
         })
       })
+
+      //Updates player message on button click
+      playerMessageInput.addEventListener("change", (e) => {
+        const newMessage = e.target.value || "";       
+        playerRef.update({
+          messageCurr: newMessage
+        })
+      })
+
+      //Show player message on button click
+      playerMessageButton.addEventListener("click", () => {
+        const thisPlayer = players[playerId];
+        let el = playerElements[playerId];
+        if (thisPlayer.messagePrev !==  thisPlayer.messageCurr){
+            el.querySelector('.popup-message').classList.remove("Hidden");
+            el.querySelector('.popup-text').innerHTML = thisPlayer.messageCurr;
+        }
+
+        setTimeout( () => {
+            el.querySelector('.popup-message').classList.add("Hidden");
+        }, 3000);
+
+        playerRef.update({
+            messagePrev: thisPlayer.messageCurr
+          });
+
+        playerMessageInput.value = "";
+      })
   
       //Place my first coin
       placeCoin();
@@ -297,7 +345,6 @@ const mapData = {
     }
   
     firebase.auth().onAuthStateChanged((user) => {
-      console.log(user)
       if (user) {
         //You're logged in!
         playerId = user.uid;
@@ -317,6 +364,8 @@ const mapData = {
           x,
           y,
           coins: 0,
+          messagePrev: "",
+          messageCurr: "",
         })
   
         //Remove me from Firebase when I diconnect
@@ -333,7 +382,6 @@ const mapData = {
       var errorCode = error.code;
       var errorMessage = error.message;
       // ...
-      console.log(errorCode, errorMessage);
     });
   
   
