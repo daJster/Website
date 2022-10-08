@@ -6,6 +6,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  z-index: -3;
   background: linear-gradient(180deg, #64BEFF -50%, #6e96ff 69.71%, #2a65ff 150%);
   font-family: 'Source Sans Pro', sans-serif;
   display: flex;
@@ -15,6 +16,8 @@ html, body {
 
 .game-container { 
   position: relative;
+  z-index: -2;
+  margin-top: 20px;
   width: 240px;
   height: 208px;
   background: url(../images/coinRoom/map.png) no-repeat no-repeat;
@@ -25,8 +28,8 @@ html, body {
 .player-info {
   z-index: -2;
   position: absolute;
-  top: 0;
-  left:0;
+  top: 70px;
+  left: 0;
   padding: 1em;
   display: flex;
   gap: 0.5em;
@@ -42,6 +45,8 @@ html, body {
   gap: 0.5em;
   align-items: flex-end
 }
+
+
 
 
 label {
@@ -89,9 +94,23 @@ button {
   border-bottom: 2px solid #1e830b;
   cursor: pointer;
 }
+
 button:active {
   position: relative;
   top: 1px;
+}
+
+#player-mic{
+  position: absolute;
+  top: 27px;
+  left: 300px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-image: url(../images/coinRoom/micON.png);
+  background-size: 40px;
+  background-repeat: no-repeat no-repeat;
+  background-position: 10px;
 }
 
 

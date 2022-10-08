@@ -171,13 +171,34 @@ const mapData = {
         attemptGrabCoin(newX, newY);
       }
     }
+
+    function sendMessage(){
+      const thisPlayer = players[playerId];
+      let el = playerElements[playerId];
+      if (thisPlayer.messagePrev !==  thisPlayer.messageCurr){
+          el.querySelector('.popup-message').classList.remove("Hidden");
+          el.querySelector('.popup-text').innerHTML = thisPlayer.messageCurr;
+      }
+
+      setTimeout( () => {
+          el.querySelector('.popup-message').classList.add("Hidden");
+      }, 700*thisPlayer.messageCurr.length);
+
+
+      playerMessageInput.value = "";
+      
+      playerRef.update({
+          messagePrev: thisPlayer.messageCurr
+      });
+    }
   
     function initGame() {
   
-      new KeyPressListener("ArrowUp", () => handleArrowPress(0, -1))
-      new KeyPressListener("ArrowDown", () => handleArrowPress(0, 1))
-      new KeyPressListener("ArrowLeft", () => handleArrowPress(-1, 0))
-      new KeyPressListener("ArrowRight", () => handleArrowPress(1, 0))
+      new KeyPressListener("ArrowUp", () => handleArrowPress(0, -1));
+      new KeyPressListener("ArrowDown", () => handleArrowPress(0, 1));
+      new KeyPressListener("ArrowLeft", () => handleArrowPress(-1, 0));
+      new KeyPressListener("ArrowRight", () => handleArrowPress(1, 0));
+      new KeyPressListener("Enter", sendMessage);
   
       const allPlayersRef = firebase.database().ref(`players`);
       const allCoinsRef = firebase.database().ref(`coins`);
@@ -299,8 +320,8 @@ const mapData = {
         playerNameInput.value = newName;
         playerRef.update({
           name: newName
-        })
-      })
+        });
+      });
   
       //Update player color on button click
       playerColorButton.addEventListener("click", () => {
@@ -308,36 +329,19 @@ const mapData = {
         const nextColor = playerColors[mySkinIndex + 1] || playerColors[0];
         playerRef.update({
           color: nextColor
-        })
-      })
+        });
+      });
 
       //Updates player message on button click
       playerMessageInput.addEventListener("change", (e) => {
         const newMessage = e.target.value || "";       
         playerRef.update({
           messageCurr: newMessage
-        })
-      })
+        });
+      });
 
       //Show player message on button click
-      playerMessageButton.addEventListener("click", () => {
-        const thisPlayer = players[playerId];
-        let el = playerElements[playerId];
-        if (thisPlayer.messagePrev !==  thisPlayer.messageCurr){
-            el.querySelector('.popup-message').classList.remove("Hidden");
-            el.querySelector('.popup-text').innerHTML = thisPlayer.messageCurr;
-        }
-
-        setTimeout( () => {
-            el.querySelector('.popup-message').classList.add("Hidden");
-        }, 3000);
-
-        playerRef.update({
-            messagePrev: thisPlayer.messageCurr
-          });
-
-        playerMessageInput.value = "";
-      })
+      playerMessageButton.addEventListener("click", sendMessage);
   
       //Place my first coin
       placeCoin();
