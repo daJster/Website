@@ -35,7 +35,7 @@ body{
     grid-template-columns: 1fr;
     margin-left: 6.5%;
     position: absolute;
-    top: -58px;
+    top: 0;
     z-index: -1;
     width: 86%;
     background-repeat: no-repeat;
@@ -45,10 +45,6 @@ body{
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     transition: .2s ease-out;
-}
-
-.container:hover{
-    transform: translate3d(0, 50px, 0);
 }
 
 footer{
