@@ -230,6 +230,15 @@ button:active {
   background: url(../images/coinRoom/coin.png) no-repeat no-repeat;
   animation: coinFloat 0.8s linear infinite alternate-reverse;
 }
+
+.Bomb_sprite {
+  background: url(../images/coinRoom/bomb.png) no-repeat no-repeat;
+  margin-top: 6px;
+  margin-left: 1px;
+  animation: flash 1s linear infinite alternate-reverse;
+}
+
+
 @keyframes coinFloat {
   from { transform: translateY(0) }
   to { transform: translateY(5px) }
@@ -246,6 +255,20 @@ button:active {
 
   100%{
     transform: translateY(-1px)
+  }
+}
+
+@keyframes flash {
+  0%{
+    opacity: 1;
+  }
+
+  50%{
+    opacity: .7;
+  }
+
+  100%{
+    opacity: 1;
   }
 }
 

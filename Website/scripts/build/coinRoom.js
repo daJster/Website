@@ -18,7 +18,7 @@ const mapData = {
       "9x9": true,
     },
   };
-  
+
   // Options for Player Colors... these are in the same order as our sprite sheet
   const playerColors = ["blue", "red", "orange", "yellow", "green", "purple"];
   
@@ -26,6 +26,22 @@ const mapData = {
   function randomFromArray(array) {
     return array[Math.floor(Math.random() * array.length)];
   }
+
+  // update the style of mic button
+  function updateButtonStyle(){
+    const button = document.querySelector("#player-mic");
+    if (button.classList.contains('ON')){
+      button.classList.remove('ON');
+      button.classList.add('OFF');
+      button.style.backgroundImage = 'url(../images/coinRoom/micOFF.png)';
+    } else {
+      button.classList.remove('OFF');
+      button.classList.add('ON');
+      button.style.backgroundImage = 'url(../images/coinRoom/micON.png)';
+    }
+  }
+
+
   function getKeyString(x, y) {
     return `${x}x${y}`;
   }
@@ -117,9 +133,12 @@ const mapData = {
     let playerId;
     let playerRef;
     let players = {};
-    let playerElements = {};
     let coins = {};
+    let bombs = {};
+    let playerElements = {};
     let coinElements = {};
+    let bombElements = {};
+
   
     const gameContainer = document.querySelector(".game-container");
     const playerNameInput = document.querySelector("#player-name");
@@ -136,10 +155,26 @@ const mapData = {
         y,
       })
   
-      const coinTimeouts = [2000, 3000, 4000, 5000];
       setTimeout(() => {
         placeCoin();
-      }, randomFromArray(coinTimeouts));
+      }, 2000);
+    }
+
+    function placeBomb(){
+      const x = players[playerId].x;
+      const y = players[playerId].y;
+      const bombRef = firebase.database().ref(`bombs/${getKeyString(x, y)}`);
+
+      if (players[playerId].coins > 0){
+        bombRef.set({
+          x,
+          y,
+        });
+  
+        playerRef.update({
+          coins: players[playerId].coins - 1,
+        });
+      }
     }
   
     function attemptGrabCoin(x, y) {
@@ -153,8 +188,26 @@ const mapData = {
       }
     }
   
+    function attemptGrabBomb(x, y){
+      const key = getKeyString(x, y);
+      if (bombs[key]) {
+        // Remove this key from data, then downtick Player's coin count
+
+        if ( players[playerId].coins > 0){
+          playerRef.update({
+            coins: players[playerId].coins - 1,
+          })
+        } else {
+          playerRef.remove();
+        }
+
+        firebase.database().ref(`bombs/${key}`).remove();
+      }
+    }
   
     function handleArrowPress(xChange = 0, yChange = 0) {
+      if (!players[playerId])  return;
+
       const newX = players[playerId].x + xChange;
       const newY = players[playerId].y + yChange;
       if (!isSolid(newX, newY)) {
@@ -169,10 +222,13 @@ const mapData = {
         }
         playerRef.set(players[playerId]);
         attemptGrabCoin(newX, newY);
+        attemptGrabBomb(newX, newY);
       }
     }
 
     function sendMessage(){
+      if (!players[playerId])  return;
+
       const thisPlayer = players[playerId];
       let el = playerElements[playerId];
       if (thisPlayer.messagePrev !==  thisPlayer.messageCurr){
@@ -194,19 +250,23 @@ const mapData = {
   
     function initGame() {
   
-      new KeyPressListener("ArrowUp", () => handleArrowPress(0, -1));
-      new KeyPressListener("ArrowDown", () => handleArrowPress(0, 1));
-      new KeyPressListener("ArrowLeft", () => handleArrowPress(-1, 0));
-      new KeyPressListener("ArrowRight", () => handleArrowPress(1, 0));
-      new KeyPressListener("Enter", sendMessage);
-  
+      new KeyPressListener( "ArrowUp", () => handleArrowPress(0, -1) );
+      new KeyPressListener( "ArrowDown", () => handleArrowPress(0, 1) );
+      new KeyPressListener( "ArrowLeft", () => handleArrowPress(-1, 0) );
+      new KeyPressListener( "ArrowRight", () => handleArrowPress(1, 0) );
+      new KeyPressListener( "Enter", sendMessage );
+      new KeyPressListener( "Space", placeBomb );
+
+      
       const allPlayersRef = firebase.database().ref(`players`);
       const allCoinsRef = firebase.database().ref(`coins`);
-  
+      const allBombsRef = firebase.database().ref('bombs');
+
       allPlayersRef.on("value", (snapshot) => {
         //Fires whenever a change occurs
         players = snapshot.val() || {};
         Object.keys(players).forEach((key) => {
+
           const characterState = players[key];
           let el = playerElements[key];
           // Now update the DOM
@@ -274,6 +334,15 @@ const mapData = {
         const removedKey = snapshot.val().id;
         gameContainer.removeChild(playerElements[removedKey]);
         delete playerElements[removedKey];
+
+        if (Object.keys(players).length === 1){
+          if (firebase.database().ref(`coins`)){
+            firebase.database().ref(`coins`).remove();
+          }
+          if (firebase.database().ref('bombs')){
+            firebase.database().ref('bombs').remove();
+          }
+        }
       })
   
   
@@ -306,11 +375,47 @@ const mapData = {
         coinElements[key] = coinElement;
         gameContainer.appendChild(coinElement);
       })
+
       allCoinsRef.on("child_removed", (snapshot) => {
         const {x,y} = snapshot.val();
         const keyToRemove = getKeyString(x,y);
         gameContainer.removeChild( coinElements[keyToRemove] );
         delete coinElements[keyToRemove];
+      })
+
+
+      allBombsRef.on("value", (snapshot) => {
+        bombs = snapshot.val() || {};
+      });
+      //
+  
+      allBombsRef.on("child_added", (snapshot) => {
+        const bomb = snapshot.val();
+        const key = getKeyString(bomb.x, bomb.y);
+        bombs[key] = true;
+  
+        // Create the DOM Element
+        const bombElement = document.createElement("div");
+        bombElement.classList.add("Bomb", "grid-cell");
+        bombElement.innerHTML = `
+          <div class="Bomb_sprite grid-cell"></div>
+        `;
+  
+        // Position the Element
+        const left = 16 * bomb.x + "px";
+        const top = 16 * bomb.y - 4 + "px";
+        bombElement.style.transform = `translate3d(${left}, ${top}, 0)`;
+  
+        // Keep a reference for removal later and add to DOM
+        bombElements[key] = bombElement;
+        gameContainer.appendChild(bombElement);
+      })
+
+      allBombsRef.on("child_removed", (snapshot) => {
+        const {x,y} = snapshot.val();
+        const keyToRemove = getKeyString(x,y);
+        gameContainer.removeChild( bombElements[keyToRemove] );
+        delete bombElements[keyToRemove];
       })
   
   
@@ -325,6 +430,8 @@ const mapData = {
   
       //Update player color on button click
       playerColorButton.addEventListener("click", () => {
+        if (!players[playerId])  return;
+
         const mySkinIndex = playerColors.indexOf(players[playerId].color);
         const nextColor = playerColors[mySkinIndex + 1] || playerColors[0];
         playerRef.update({
@@ -375,6 +482,16 @@ const mapData = {
         //Remove me from Firebase when I diconnect
         playerRef.onDisconnect().remove();
   
+
+        if (Object.keys(players).length === 1){
+          if (firebase.database().ref(`coins`)){
+            firebase.database().ref(`coins`).remove();
+          }
+          if (firebase.database().ref('bombs')){
+            firebase.database().ref('bombs').remove();
+          }
+        }
+        
         //Begin the game now that we are signed in
         initGame();
       } else {
